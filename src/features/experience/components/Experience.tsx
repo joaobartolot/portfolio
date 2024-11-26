@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion';
+import { twJoin } from 'tailwind-merge';
 import { Work } from '../types/Work';
 
 const experience: Work[] = [
@@ -23,13 +25,24 @@ const Experience = () => {
 	return (
 		<section
 			id="experience"
-			className="flex flex-col justify-center items-center h-screen"
+			className="flex flex-col justify-center items-center min-h-screen py-24"
 		>
 			<div className="w-full md:w-9/12 text-start text-2xl mb-8 font-bold font-display">
 				Experience
 			</div>
-			{experience.map(work => (
-				<div className="flex flex-col md:flex-row justify-center md:justify-center items-start md:items-center space-x-0 space-y-4 md:space-x-8 md:space-y-0 w-full md:w-9/12 even:bg-gunmetal even:shadow-sm rounded-lg px-8 py-6">
+			{experience.map((work, i) => (
+				<motion.div
+					key={work.name}
+					initial={{ x: i % 2 === 0 ? -200 : 200, opacity: 0 }}
+					whileInView={{ x: 0, opacity: 1 }}
+					viewport={{ once: true, amount: 0.2 }} // Animation triggers when 30% of the component is visible
+					transition={{ duration: 0.3, ease: 'easeOut' }}
+					className={twJoin(
+						'flex flex-col md:flex-row items-start md:items-center',
+						'space-x-0 space-y-4 md:space-x-8 md:space-y-0 w-full',
+						'md:w-9/12 even:bg-gunmetal even:shadow-md rounded-lg px-8 py-6'
+					)}
+				>
 					<div>
 						<div className="flex justify-center items-center h-10 aspect-1 rounded-full overflow-hidden">
 							<img
@@ -47,12 +60,12 @@ const Experience = () => {
 						<div className="text-lg md:text-xl font-bold">
 							{work.position}
 						</div>
-						<div>{work.location}</div>
+						<div className="text-sm">{work.location}</div>
 						<div className="mt-4 text-start">
 							{work.description}
 						</div>
 					</div>
-				</div>
+				</motion.div>
 			))}
 		</section>
 	);

@@ -7,7 +7,7 @@ const Header = () => {
 	const sections = ['Experience', 'Projects', 'Contacts'];
 
 	return (
-		<header className="fixed top-0 left-0 w-full bg-transparent z-50">
+		<header className="hidden md:block fixed top-0 left-0 w-full bg-transparent z-50">
 			<nav className="flex justify-center items-center h-24 ">
 				<div className="rounded-full bg-rich-black px-6 py-2 shadow-md space-x-10">
 					{sections.map(section => (

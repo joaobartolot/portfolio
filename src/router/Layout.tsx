@@ -4,7 +4,7 @@ import Header from '../components/Header';
 
 const Layout = () => {
 	return (
-		<div className="flex flex-col min-h-screen">
+		<div className="flex flex-col min-h-screen bg-gunmetal-400 max-w-5xl md:border-x-[1px] border-y-0 border-paynes-gray-600 px-2">
 			<Header />
 			<main className="flex-grow">
 				<Outlet /> {/* This renders the current route's component */}

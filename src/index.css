@@ -21,10 +21,122 @@ body {
 	min-height: 100vh;
 }
 
+a:hover {
+	@apply underline
+}
+
 @font-face {
 	font-family: 'Montserrat';
-	src: url('./fonts/Montserrat-Regular.woff2') format('woff2'),
-		url('./fonts/Montserrat-Regular.woff') format('woff');
+	src: url('./assets/fonts/Montserrat-Black.woff2') format('woff2'),
+		url('./assets/fonts/Montserrat-Black.woff') format('woff');
+	font-weight: 900;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Montserrat';
+	src: url('./assets/fonts/Montserrat-Bold.woff2') format('woff2'),
+		url('./assets/fonts/Montserrat-Bold.woff') format('woff');
+	font-weight: bold;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Montserrat';
+	src: url('./assets/fonts/Montserrat-ExtraBold.woff2') format('woff2'),
+		url('./assets/fonts/Montserrat-ExtraBold.woff') format('woff');
+	font-weight: bold;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Montserrat';
+	src: url('./assets/fonts/Montserrat-ExtraLight.woff2') format('woff2'),
+		url('./assets/fonts/Montserrat-ExtraLight.woff') format('woff');
+	font-weight: 200;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Montserrat';
+	src: url('./assets/fonts/Montserrat-Light.woff2') format('woff2'),
+		url('./assets/fonts/Montserrat-Light.woff') format('woff');
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Montserrat';
+	src: url('./assets/fonts/Montserrat-Medium.woff2') format('woff2'),
+		url('./assets/fonts/Montserrat-Medium.woff') format('woff');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Nunito';
+	src: url('./assets/fonts/Nunito-Black.woff2') format('woff2'),
+		url('./assets/fonts/Nunito-Black.woff') format('woff');
+	font-weight: 900;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Montserrat';
+	src: url('./assets/fonts/Montserrat-Thin.woff2') format('woff2'),
+		url('./assets/fonts/Montserrat-Thin.woff') format('woff');
+	font-weight: 100;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Montserrat';
+	src: url('./assets/fonts/Montserrat-Regular.woff2') format('woff2'),
+		url('./assets/fonts/Montserrat-Regular.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Montserrat';
+	src: url('./assets/fonts/Montserrat-SemiBold.woff2') format('woff2'),
+		url('./assets/fonts/Montserrat-SemiBold.woff') format('woff');
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Nunito';
+	src: url('./assets/fonts/Nunito-Light.woff2') format('woff2'),
+		url('./assets/fonts/Nunito-Light.woff') format('woff');
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Nunito';
+	src: url('./assets/fonts/Nunito-Bold.woff2') format('woff2'),
+		url('./assets/fonts/Nunito-Bold.woff') format('woff');
+	font-weight: bold;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Nunito';
+	src: url('./assets/fonts/Nunito-Regular.woff2') format('woff2'),
+		url('./assets/fonts/Nunito-Regular.woff') format('woff');
 	font-weight: normal;
 	font-style: normal;
 	font-display: swap;
@@ -32,8 +144,71 @@ body {
 
 @font-face {
 	font-family: 'Nunito';
-	src: url('./fonts/Nunito-Regular.woff2') format('woff2'),
-		url('./fonts/Nunito-Regular.woff') format('woff');
+	src: url('./assets/fonts/Nunito-ExtraBold.woff2') format('woff2'),
+		url('./assets/fonts/Nunito-ExtraBold.woff') format('woff');
+	font-weight: bold;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Nunito';
+	src: url('./assets/fonts/Nunito-ExtraLight.woff2') format('woff2'),
+		url('./assets/fonts/Nunito-ExtraLight.woff') format('woff');
+	font-weight: 200;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Nunito';
+	src: url('./assets/fonts/Nunito-Medium.woff2') format('woff2'),
+		url('./assets/fonts/Nunito-Medium.woff') format('woff');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Roboto Mono';
+	src: url('./assets/fonts/RobotoMono-ExtraLight.woff2') format('woff2'),
+		url('./assets/fonts/RobotoMono-ExtraLight.woff') format('woff');
+	font-weight: 200;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Roboto Mono';
+	src: url('./assets/fonts/RobotoMono-Medium.woff2') format('woff2'),
+		url('./assets/fonts/RobotoMono-Medium.woff') format('woff');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Roboto Mono';
+	src: url('./assets/fonts/RobotoMono-Light.woff2') format('woff2'),
+		url('./assets/fonts/RobotoMono-Light.woff') format('woff');
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Nunito';
+	src: url('./assets/fonts/Nunito-SemiBold.woff2') format('woff2'),
+		url('./assets/fonts/Nunito-SemiBold.woff') format('woff');
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Roboto Mono';
+	src: url('./assets/fonts/RobotoMono-Regular.woff2') format('woff2'),
+		url('./assets/fonts/RobotoMono-Regular.woff') format('woff');
 	font-weight: normal;
 	font-style: normal;
 	font-display: swap;
@@ -41,9 +216,27 @@ body {
 
 @font-face {
 	font-family: 'Roboto Mono';
-	src: url('./fonts/RobotoMono-Regular.woff2') format('woff2'),
-		url('./fonts/RobotoMono-Regular.woff') format('woff');
-	font-weight: normal;
+	src: url('./assets/fonts/RobotoMono-Bold.woff2') format('woff2'),
+		url('./assets/fonts/RobotoMono-Bold.woff') format('woff');
+	font-weight: bold;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Roboto Mono';
+	src: url('./assets/fonts/RobotoMono-Thin.woff2') format('woff2'),
+		url('./assets/fonts/RobotoMono-Thin.woff') format('woff');
+	font-weight: 100;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Roboto Mono';
+	src: url('./assets/fonts/RobotoMono-SemiBold.woff2') format('woff2'),
+		url('./assets/fonts/RobotoMono-SemiBold.woff') format('woff');
+	font-weight: 600;
 	font-style: normal;
 	font-display: swap;
 }

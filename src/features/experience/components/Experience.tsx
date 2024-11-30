@@ -5,7 +5,7 @@ import { Work } from '../types/Work';
 const experience: Work[] = [
 	{
 		name: 'calindra',
-		dateRange: '2021 - Present',
+		dateRange: '2022 - 2024',
 		position: 'Software developer at Calindra',
 		location: 'Rio de Janeiro, BR',
 		description: `At Calindra, I had the opportunity to make a significant impact on various full-stack projects, working on both backend and frontend areas. I contributed to building cloud infrastructure solutions, developing features that enhance efficiency and user experience.`,
@@ -13,7 +13,7 @@ const experience: Work[] = [
 	},
 	{
 		name: 'trinks',
-		dateRange: '2019 - 2020',
+		dateRange: '2020 - 2021',
 		position: 'Software developer at Trinks',
 		location: 'Rio de Janeiro, BR',
 		description: `At Trinks, I worked as a full-stack developer, contributing to both the existing website and a project to transform our salon management system into a hybrid mobile app. My role spanned frontend and backend development, as well as working with relational databases.`,

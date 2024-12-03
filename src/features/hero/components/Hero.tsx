@@ -9,8 +9,8 @@ const Hero = () => {
 		>
 			<div className="w-32 h-32 rounded-full overflow-hidden">
 				<img
-					src="/images/avatar.jpg"
-					alt="avatar"
+					src="/images/profile-image.jpg"
+					alt="Profile image"
 					loading="lazy"
 					className="object-cover"
 				/>

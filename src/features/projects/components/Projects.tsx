@@ -11,6 +11,7 @@ const Projects = () => {
 				'Doces da Juli is a website I built for Juliana Castelo to organize and display her catalog of cakes and desserts. It helps her easily manage her products while giving customers a simple way to browse and place orders.',
 			tech: 'React, TailwindCSS, Firebase, Nest.js',
 			image: '/images/doces-juli.png',
+			alt: 'E-commerce project using vite, react, tailwind, nest and firebase',
 		},
 	];
 
@@ -77,7 +78,7 @@ const Projects = () => {
 								ref={el => (imageRefs.current[index] = el)}
 								className="w-full rounded-t-lg"
 								src={project.image}
-								alt={project.title}
+								alt={project.alt}
 								onLoad={handleImageLoad} // Ensure height is updated when the image loads
 							/>
 							<div className="flex flex-col items-start text-start p-4 text-white">

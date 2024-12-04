@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 
 const Projects = () => {
 	const projects = [
@@ -15,29 +15,8 @@ const Projects = () => {
 		},
 	];
 
-	const [imageHeights, setImageHeights] = useState<number[]>([]);
 	const [clickedProject, setClickedProject] = useState<number | null>(null);
-	const imageRefs = useRef<(HTMLImageElement | null)[]>([]);
-
-	const updateImageHeights = () => {
-		const heights = imageRefs.current.map(img =>
-			img ? img.offsetHeight : 0
-		);
-		setImageHeights(heights);
-	};
-
-	// Update image heights when images load
-	const handleImageLoad = () => {
-		updateImageHeights();
-	};
-
-	useEffect(() => {
-		// Update image heights initially and on resize
-		updateImageHeights();
-
-		window.addEventListener('resize', updateImageHeights);
-		return () => window.removeEventListener('resize', updateImageHeights);
-	}, []);
+	const [hoveredProject, setHoveredProject] = useState<number | null>(null);
 
 	return (
 		<section
@@ -47,71 +26,88 @@ const Projects = () => {
 			<div className="w-full text-start text-2xl mb-8 font-bold font-display">
 				Projects
 			</div>
-			<div className="flex flex-wrap justify-center md:justify-around w-full">
-				{projects.map((project, index) => {
+			<div className="flex flex-wrap justify-center md:justify-around w-full space-y-8">
+				{projects.map(project => {
 					const isClicked = clickedProject === project.id;
+					const isHovered = hoveredProject === project.id;
 
 					return (
 						<motion.div
 							key={project.id}
-							initial={false}
-							animate={{
-								height: isClicked
-									? 'auto'
-									: imageHeights[index]
-									? `${imageHeights[index]}px`
-									: 'auto',
+							onHoverStart={() => setHoveredProject(project.id)}
+							onHoverEnd={() => {
+								setHoveredProject(null);
+								setClickedProject(null);
 							}}
-							whileHover={{
-								height: 'auto',
-							}}
-							transition={{ duration: 0.3, ease: 'easeOut' }}
-							onHoverEnd={() => setClickedProject(null)} // Reset clicked state on hover
 							onClick={() =>
 								setClickedProject(prev =>
 									prev === project.id ? null : project.id
 								)
 							}
-							className="relative w-full md:w-5/6 bg-gunmetal rounded-lg shadow-md overflow-hidden"
+							className="relative w-full md:w-5/6 bg-gunmetal rounded-lg shadow-md"
 						>
-							<img
-								ref={el => (imageRefs.current[index] = el)}
-								className="w-full rounded-t-lg"
+							<motion.img
+								animate={{
+									borderBottomLeftRadius:
+										isClicked || isHovered
+											? '0rem'
+											: '0.5rem',
+									borderBottomRightRadius:
+										isClicked || isHovered
+											? '0rem'
+											: '0.5rem',
+									borderTopLeftRadius: '0.5rem',
+									borderTopRightRadius: '0.5rem',
+								}}
+								transition={{
+									duration: 0.3,
+									ease: 'easeOut',
+								}}
+								className="w-full transition"
 								src={project.image}
 								alt={project.alt}
-								onLoad={handleImageLoad} // Ensure height is updated when the image loads
 							/>
-							<div className="flex flex-col items-start text-start p-4 text-white">
-								<a
-									href={project.link}
-									target="_blank"
-									rel="noopener noreferrer"
-									className="flex flex-row justify-center items-center text-lg md:text-xl font-bold"
-								>
-									{project.title}
-									<svg
-										width="24"
-										height="24"
-										viewBox="0 0 24 24"
-										fill="none"
-										xmlns="http://www.w3.org/2000/svg"
-										className="h-5 aspect-1 rotate-45 ml-2 stroke-gray-400 opacity-50"
-										stroke="black"
-										strokeWidth="2"
-										strokeLinecap="round"
-										strokeLinejoin="round"
+							<motion.div
+								initial={false}
+								animate={{
+									height:
+										isClicked || isHovered ? 'auto' : '0',
+								}}
+								transition={{ duration: 0.3, ease: 'easeOut' }}
+								className="flex flex-col items-start text-start text-white overflow-hidden rounded-lg"
+							>
+								<div className="p-4">
+									<a
+										href={project.link}
+										target="_blank"
+										rel="noopener noreferrer"
+										className="flex flex-row justify-center items-center text-lg md:text-xl font-bold"
 									>
-										<path d="M5.93866 9.12287L12 3.06152L18.0613 9.12287"></path>
-										<path d="M12 21.0615L12 3.06152"></path>
-									</svg>
-								</a>
-								<p className="text-sm mt-2">
-									{project.description}
-								</p>
-								<p className="text-sm mt-2 italic">
-									Tech used: {project.tech}
-								</p>
-							</div>
+										{project.title}
+										<svg
+											width="24"
+											height="24"
+											viewBox="0 0 24 24"
+											fill="none"
+											xmlns="http://www.w3.org/2000/svg"
+											className="h-5 aspect-1 rotate-45 ml-2 stroke-gray-400 opacity-50"
+											stroke="black"
+											strokeWidth="2"
+											strokeLinecap="round"
+											strokeLinejoin="round"
+										>
+											<path d="M5.93866 9.12287L12 3.06152L18.0613 9.12287"></path>
+											<path d="M12 21.0615L12 3.06152"></path>
+										</svg>
+									</a>
+									<p className="text-sm mt-2">
+										{project.description}
+									</p>
+									<p className="text-sm mt-2 italic">
+										Tech used: {project.tech}
+									</p>
+								</div>
+							</motion.div>
 						</motion.div>
 					);
 				})}

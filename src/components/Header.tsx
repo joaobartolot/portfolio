@@ -30,7 +30,7 @@ const Header = () => {
 		}
 	}, [isHeroVisible]);
 
-	const sections = ['Experience', 'Projects'];
+	const sections = ['Experience', 'Projects', 'Contact'];
 
 	return (
 		<header className="fixed top-0 left-0 w-full bg-transparent z-50">

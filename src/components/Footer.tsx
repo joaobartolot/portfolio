@@ -37,7 +37,7 @@ const Footer = () => {
 				</a>
 			</div>
 			<div className="text-sm text-charcoal-400">
-				© João Bartolot. All rights reserved.
+				Designed and Built by João Bartolot | © 2024
 			</div>
 		</footer>
 	);

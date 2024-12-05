@@ -1,5 +1,8 @@
-/** @type {import('tailwindcss').Config} */
-export default {
+import aspectRatio from '@tailwindcss/aspect-ratio';
+import typography from '@tailwindcss/typography';
+import { Config } from 'tailwindcss';
+
+const config: Config = {
 	content: ['./src/**/*.{html,js,jsx,ts,tsx}', './public/index.html'],
 	theme: {
 		extend: {
@@ -70,19 +73,18 @@ export default {
 					900: '#d8dce4',
 				},
 			},
-		},
-		keyframes: {
-			slowBounce: {
-				'0%, 100%': { transform: 'translateY(5px)' },
-				'50%': { transform: 'translateY(0px)' },
+			keyframes: {
+				slowBounce: {
+					'0%, 100%': { transform: 'translateY(5px)' },
+					'50%': { transform: 'translateY(0px)' },
+				},
+			},
+			animation: {
+				slowBounce: 'slowBounce 1s ease-in-out infinite',
 			},
 		},
-		animation: {
-			slowBounce: 'slowBounce 1s ease-in-out infinite',
-		},
 	},
-	plugins: [
-		require('@tailwindcss/typography'),
-		require('@tailwindcss/aspect-ratio'),
-	],
+	plugins: [typography, aspectRatio],
 };
+
+export default config;

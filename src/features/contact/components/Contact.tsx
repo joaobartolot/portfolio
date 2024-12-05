@@ -34,7 +34,7 @@ const Contact = () => {
 						rel="noopener noreferrer"
 						className="flex justify-center items-center px-4 py-2 rounded-full bg-rich-black hover:bg-rich-black-600 transition-colors"
 					>
-						<Linkedin className="fill-raisin-black-900 w-7 h-7 pl-1 mr-4" />
+						<Linkedin className="fill-raisin-black-900 w-6 h-6 pl-1 mr-4" />
 						João Bartolot
 					</a>
 				</div>

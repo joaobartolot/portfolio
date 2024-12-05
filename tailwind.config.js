@@ -74,15 +74,15 @@ module.exports = {
 		keyframes: {
 			slowBounce: {
 				'0%, 100%': { transform: 'translateY(5px)' },
-				'50%': { transform: 'translateY(0px)' }, // Adjust for larger bounce
+				'50%': { transform: 'translateY(0px)' },
 			},
 		},
 		animation: {
-			slowBounce: 'slowBounce 1s ease-in-out infinite', // Slower and smoother bounce
+			slowBounce: 'slowBounce 1s ease-in-out infinite',
 		},
 	},
 	plugins: [
-		require('@tailwindcss/typography'), // Aprimoramento de tipografia
-		require('@tailwindcss/aspect-ratio'), // Útil para manter proporções de imagens
+		require('@tailwindcss/typography'),
+		require('@tailwindcss/aspect-ratio'),
 	],
 };

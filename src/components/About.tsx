@@ -7,7 +7,7 @@ const About = () => {
 			className="flex flex-col justify-center items-center w-full py-16"
 		>
 			<div className="text-display text-2xl">About_</div>
-			<div className="flex flex-col my-24 max-h-80 space-x-16">
+			<div className="flex flex-col md:flex-row my-24 max-h-80 space-x-16">
 				<div className="border-4 max-h-80 max-w-80 aspect-square border-secondary rounded-md overflow-hidden">
 					<img
 						src="about.webp"

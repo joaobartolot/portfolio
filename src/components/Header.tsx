@@ -54,7 +54,7 @@ const Header = () => {
 		<header
 			ref={headerRef}
 			className={twJoin(
-				'fixed flex w-full items-center justify-center px-4 py-4 transition-color duration-300',
+				'fixed flex w-full items-center justify-center px-4 py-4 transition-color duration-300 z-10',
 				'md:px-12',
 				frostHeader ? 'bg-white/5 backdrop-blur-sm' : ''
 			)}

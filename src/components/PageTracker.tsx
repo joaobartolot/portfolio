@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { twJoin } from 'tailwind-merge';
 
-const sections = ['hero', 'about', 'projects', 'contact'];
+const sections = ['hero', 'about', 'experience', 'contact'];
 
 const PageTracker = () => {
 	const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -47,8 +47,18 @@ const PageTracker = () => {
 	const handleClick = (index: number) => {
 		const sectionId = sections[index];
 		const sectionElement = document.getElementById(sectionId);
+
 		if (sectionElement) {
-			sectionElement.scrollIntoView({ behavior: 'smooth' });
+			const offset = 72; // Header height
+			const sectionPosition =
+				sectionElement.getBoundingClientRect().top +
+				window.scrollY -
+				offset;
+
+			window.scrollTo({
+				top: sectionPosition,
+				behavior: 'smooth',
+			});
 		}
 	};
 

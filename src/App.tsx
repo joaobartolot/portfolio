@@ -1,5 +1,6 @@
 import './App.css';
 import About from './components/About';
+import Experience from './components/Experience';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import PageTracker from './components/PageTracker';
@@ -11,9 +12,7 @@ function App() {
 				<PageTracker />
 				<Hero />
 				<About />
-				<section id="projects" className="w-full h-screen">
-					hello
-				</section>
+				<Experience />
 			</main>
 		</>
 	);

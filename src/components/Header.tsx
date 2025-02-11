@@ -49,6 +49,26 @@ const Header = () => {
 		closed: { rotate: 0, y: 0 },
 		open: { rotate: -45, y: -8, width: '100%' },
 	};
+	const handleAnchorClick = (
+		event: React.MouseEvent<HTMLAnchorElement>,
+		sectionId: string
+	) => {
+		event.preventDefault(); // Prevent default anchor link behavior
+
+		const sectionElement = document.getElementById(sectionId);
+		if (sectionElement) {
+			const offset = 72; // Header height
+			const sectionPosition =
+				sectionElement.getBoundingClientRect().top +
+				window.scrollY -
+				offset;
+
+			window.scrollTo({
+				top: sectionPosition,
+				behavior: 'smooth',
+			});
+		}
+	};
 
 	return (
 		<header
@@ -107,9 +127,24 @@ const Header = () => {
 						'md:flex'
 					)}
 				>
-					<a href="#about">About</a>
-					<a href="#experience">Experience</a>
-					<a href="#project">Projects</a>
+					<a
+						href="#about"
+						onClick={e => handleAnchorClick(e, 'about')}
+					>
+						About
+					</a>
+					<a
+						href="#experience"
+						onClick={e => handleAnchorClick(e, 'experience')}
+					>
+						Experience
+					</a>
+					<a
+						href="#project"
+						onClick={e => handleAnchorClick(e, 'project')}
+					>
+						Projects
+					</a>
 				</nav>
 			</div>
 			<motion.nav
@@ -126,9 +161,21 @@ const Header = () => {
 					'z-10 flex flex-col items-start space-y-6 py-24 pl-4 pr-24 rounded-br-[30px]'
 				)}
 			>
-				<a href="#about">About</a>
-				<a href="#experience">Experience</a>
-				<a href="#project">Projects</a>
+				<a href="#about" onClick={e => handleAnchorClick(e, 'about')}>
+					About
+				</a>
+				<a
+					href="#experience"
+					onClick={e => handleAnchorClick(e, 'experience')}
+				>
+					Experience
+				</a>
+				<a
+					href="#project"
+					onClick={e => handleAnchorClick(e, 'project')}
+				>
+					Projects
+				</a>
 			</motion.nav>
 		</header>
 	);

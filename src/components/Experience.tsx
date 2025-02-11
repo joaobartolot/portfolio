@@ -4,7 +4,7 @@ const Experience = () => {
 	return (
 		<section
 			id="experience"
-			className="flex flex-col justify-center items-center w-full py-16"
+			className="flex flex-col justify-center items-center w-full py-16 overflow-x-hidden"
 		>
 			<div className="text-display text-2xl">Experience_</div>
 

@@ -1,21 +1,26 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
+@theme {
+	--color-primary: #121212;
+	--color-secondary: #3B82F6;
+	--color-tertiary: #8B5CF6;
+	--color-disabled: #A8A8A8;
+
+	--font-display: "Inter", "serif";
+}
 
 :root {
+  color-scheme: light dark;
+  color: var(--color-white);
+  background-color: var(--color-primary);
+  font-family: var(--font-display);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  
 }
-
-
 body {
   margin: 0;
-  display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
@@ -23,4 +28,51 @@ body {
 
 html {
 	scroll-behavior: smooth;
+}
+
+a:hover {
+	color: var(--color-tertiary);
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 100;
+    src: url('./assets/fonts/Inter_24pt-Thin.ttf') format('truetype');
+}
+
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    src: url('./assets/fonts/Inter_24pt-Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    src: url('./assets/fonts/Inter_24pt-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    src: url('./assets/fonts/Inter_24pt-Medium.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    src: url('./assets/fonts/Inter_24pt-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    src: url('./assets/fonts/Inter_24pt-Bold.ttf') format('truetype');
 }

@@ -1,3 +1,4 @@
+import AnimatedSectionTitle from './AnimatedSectionTitle';
 import ProjectCard from './ProjectCard';
 import TechStackSlider from './TechStackSlider';
 
@@ -32,9 +33,10 @@ const Projects = () => {
 
 						{/* Project Description */}
 						<div className="text-start space-y-2 md:space-y-4 md:border-b border-secondary pb-2 max-h-[300px]">
-							<h2 className="font-display text-xl md:text-2xl lg:text-3xl">
-								Projects_
-							</h2>
+							<AnimatedSectionTitle
+								word="Projects"
+								className="font-display text-xl md:text-2xl lg:text-3xl"
+							/>
 							<p className="text-xs md:text-base max-w-[180px] md:max-w-[300px]">
 								The projects I develop use the latest
 								technologies and are tailored to meet each

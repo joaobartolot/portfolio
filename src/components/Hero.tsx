@@ -1,3 +1,4 @@
+import HeroTextEffect from './HeroTextEffect';
 import ScrollIndicator from './ScrollIndicator';
 
 const Hero = () => {
@@ -8,11 +9,7 @@ const Hero = () => {
 			data-section
 		>
 			<div className="font-display text-5xl text-start">
-				Coding <br />
-				<span className="text-secondary">Ideas</span>,<br />
-				Crafting
-				<br />
-				<span className="text-secondary">Solutions</span>_
+				<HeroTextEffect />
 			</div>
 			<ScrollIndicator className="absolute bottom-16 md:bottom-12" />
 		</section>

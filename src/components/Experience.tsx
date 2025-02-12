@@ -1,3 +1,4 @@
+import AnimatedSectionTitle from './AnimatedSectionTitle';
 import Timeline from './Timeline';
 
 const Experience = () => {
@@ -7,7 +8,10 @@ const Experience = () => {
 			className="flex flex-col justify-center items-center w-full py-16 overflow-x-hidden"
 			data-section
 		>
-			<div className="font-display text-2xl md:text-3xl">Experience_</div>
+			<AnimatedSectionTitle
+				word="Experience"
+				className="font-display text-2xl md:text-3xl"
+			/>
 
 			<div className="flex flex-col justify-center items-center my-12 md:my-24 space-y-16">
 				<div className="flex flex-col md:flex-row justify-center items-center md:space-x-8 text-start">

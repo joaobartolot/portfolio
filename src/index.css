@@ -15,6 +15,7 @@
 	--font-display: "Orbit", "sans-serif";
 
 	--animate-slow-bounce: slowBounce 1s ease-in-out infinite;
+	--animate-blink: blink 1s infinite;
 
 	@keyframes slowBounce {
 	  0%, 100% {
@@ -24,6 +25,16 @@
 		transform: translateY(0px);
 	  }
 	}
+
+	@keyframes blink {
+		0%, 100% {
+		  opacity: 1;
+		}
+		50% {
+		  opacity: 0;
+		}
+	  }
+  
 }
 
 :root {

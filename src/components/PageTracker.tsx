@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { twJoin } from 'tailwind-merge';
 
-const sections = ['hero', 'about', 'experience', 'contact'];
+const sections = ['hero', 'about', 'experience', 'projects'];
 
 const PageTracker = () => {
 	const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -10,32 +10,18 @@ const PageTracker = () => {
 	useEffect(() => {
 		const observer = new IntersectionObserver(
 			entries => {
-				// Filter to only the entries that are intersecting with at least 60% visibility.
-				const visibleEntries = entries.filter(
-					entry => entry.isIntersecting
-				);
-
-				if (visibleEntries.length > 0) {
-					// Pick the entry that is closest to the top of the viewport.
-					const sorted = visibleEntries.sort(
-						(a, b) =>
-							Math.abs(a.boundingClientRect.top) -
-							Math.abs(b.boundingClientRect.top)
-					);
-					const mostVisible = sorted[0];
-					const newActiveIndex = sections.indexOf(
-						mostVisible.target.id
-					);
-					setActiveIndex(newActiveIndex);
-				} else {
-					// Optionally, if no section is 60% visible, clear the active state.
-					setActiveIndex(null);
-				}
+				entries.forEach(entry => {
+					if (entry.isIntersecting) {
+						const newActiveIndex = sections.indexOf(
+							entry.target.id
+						);
+						setActiveIndex(newActiveIndex);
+					}
+				});
 			},
-			{ threshold: 0.6 }
+			{ threshold: 0.5 }
 		);
 
-		// Observe each section element.
 		sections.forEach(id => {
 			const element = document.getElementById(id);
 			if (element) observer.observe(element);
@@ -63,7 +49,7 @@ const PageTracker = () => {
 	};
 
 	return (
-		<div className="fixed top-1/2 right-4 -translate-y-1/2 flex flex-col gap-4 z-10">
+		<div className="fixed top-1/2 right-4 -translate-y-1/2 flex flex-col gap-4 z-30">
 			{sections.map((_, index) => (
 				<div
 					key={index}

@@ -74,7 +74,7 @@ const Header = () => {
 		<header
 			ref={headerRef}
 			className={twJoin(
-				'fixed flex w-full items-center justify-center px-4 py-4 transition-color duration-300 z-10',
+				'fixed flex w-full items-center justify-center px-4 py-4 transition-color duration-300 z-40',
 				'md:px-12',
 				frostHeader ? 'bg-white/5 backdrop-blur-sm' : ''
 			)}
@@ -82,14 +82,14 @@ const Header = () => {
 			<div className="relative flex w-full items-center justify-between">
 				<div
 					className={twJoin(
-						'absolute inset-0 z-10 flex h-full w-full items-center justify-center',
+						'absolute inset-0 z-40 flex h-full w-full items-center justify-center',
 						'md:static md:w-fit'
 					)}
 				>
 					<img src="logo.svg" alt="Logo" className="w-36" />
 				</div>
 				<button
-					className="z-20 flex h-6 w-8 flex-col justify-around md:hidden"
+					className="z-50 flex h-6 w-8 flex-col justify-around md:hidden"
 					onClick={() => setIsOpen(!isOpen)}
 				>
 					<motion.span
@@ -116,7 +116,7 @@ const Header = () => {
 
 				<Button
 					onClick={() => console.log('hello')}
-					className="z-10 px-2 py-1 text-sm md:px-8 md:py-2 md:text-base"
+					className="z-50 px-2 py-1 text-sm md:px-8 md:py-2 md:text-base"
 				>
 					Hire me
 				</Button>
@@ -140,8 +140,8 @@ const Header = () => {
 						Experience
 					</a>
 					<a
-						href="#project"
-						onClick={e => handleAnchorClick(e, 'project')}
+						href="#projects"
+						onClick={e => handleAnchorClick(e, 'projects')}
 					>
 						Projects
 					</a>
@@ -158,7 +158,7 @@ const Header = () => {
 				}}
 				className={twJoin(
 					'md:hidden absolute top-0 left-0 overflow-hidden bg-white/5 backdrop-blur-sm',
-					'z-10 flex flex-col items-start space-y-6 py-24 pl-4 pr-24 rounded-br-[30px]'
+					'z-40 flex flex-col items-start space-y-6 py-24 pl-4 pr-24 rounded-br-[30px]'
 				)}
 			>
 				<a href="#about" onClick={e => handleAnchorClick(e, 'about')}>
@@ -171,8 +171,8 @@ const Header = () => {
 					Experience
 				</a>
 				<a
-					href="#project"
-					onClick={e => handleAnchorClick(e, 'project')}
+					href="#projects"
+					onClick={e => handleAnchorClick(e, 'projects')}
 				>
 					Projects
 				</a>

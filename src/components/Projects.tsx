@@ -1,0 +1,58 @@
+import ProjectCard from './ProjectCard';
+
+const projects = [
+	{
+		name: 'MR. GULA',
+		image: '/mrgula.png',
+		techStack: ['React', 'TailwindCSS', 'Sanity CMS'],
+		link: 'https://mr-gula.vercel.app/',
+	},
+];
+
+const Projects = () => {
+	return (
+		<section
+			className="relative flex flex-col justify-center items-center"
+			id="projects"
+		>
+			{/* Slider */}
+			<div className="absolute -top-0 md:top-0 h-14 w-full bg-tertiary -z-10"></div>
+
+			{/* Content Wrapper */}
+			<div className="relative flex flex-col items-center justify-center w-full h-full py-6">
+				{/* iPhone Image */}
+				<div className=" flex flex-col w-full">
+					<div className="flex justify-center items-end xl:items-center border-b border-secondary md:border-none w-full pb-12 md:p-0 space-x-2 md:space-x-12 xl:space-x-24">
+						<img
+							src="iphone.png"
+							alt="Mr. Gula website"
+							className="w-full max-w-[180px] md:max-w-[250px] xl:max-w-[350px] object-cover"
+						/>
+
+						{/* Project Description */}
+						<div className="text-start space-y-2 md:space-y-4 md:border-b border-secondary pb-2 max-h-[300px]">
+							<h2 className="font-display text-xl md:text-2xl">
+								Projects_
+							</h2>
+							<p className="text-xs md:text-base max-w-[180px] md:max-w-[300px]">
+								The projects I develop use the latest
+								technologies and are tailored to meet each
+								client's specific needs. Over the years, I’ve
+								worked on various projects, both at companies
+								I’ve been part of and as a freelancer,
+								delivering custom solutions that drive results.
+							</p>
+						</div>
+					</div>
+				</div>
+				<div className="flex justify-center space-x-4 overflow-scroll pb-4 w-full my-12">
+					{projects.map(project => (
+						<ProjectCard {...project} />
+					))}
+				</div>
+			</div>
+		</section>
+	);
+};
+
+export default Projects;

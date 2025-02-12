@@ -6,7 +6,7 @@ const About = () => {
 			id="about"
 			className="flex flex-col justify-center items-center w-full py-16"
 		>
-			<div className="font-display text-2xl">About_</div>
+			<div className="font-display text-2xl md:text-3xl">About_</div>
 			<div className="flex flex-col md:flex-row justify-center items-center my-12 space-y-4 md:space-x-16 max-w-60 md:max-w-max">
 				<div className="border-4 max-w-60 md:max-w-80 aspect-square border-secondary rounded-2xl overflow-hidden">
 					<img

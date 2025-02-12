@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { twJoin } from 'tailwind-merge';
 
-const sections = ['hero', 'about', 'experience', 'projects'];
+const sections = ['hero', 'about', 'experience', 'projects', 'contact'];
 
 const PageTracker = () => {
 	const [activeIndex, setActiveIndex] = useState<number | null>(null);

@@ -5,6 +5,7 @@ const Hero = () => {
 		<section
 			id="hero"
 			className="relative flex justify-center items-center w-ful h-screen"
+			data-section
 		>
 			<div className="font-display text-5xl text-start">
 				Coding <br />

@@ -5,6 +5,7 @@ const Experience = () => {
 		<section
 			id="experience"
 			className="flex flex-col justify-center items-center w-full py-16 overflow-x-hidden"
+			data-section
 		>
 			<div className="font-display text-2xl md:text-3xl">Experience_</div>
 

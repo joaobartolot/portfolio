@@ -5,6 +5,7 @@ const About = () => {
 		<section
 			id="about"
 			className="flex flex-col justify-center items-center w-full py-16"
+			data-section
 		>
 			<div className="font-display text-2xl md:text-3xl">About_</div>
 			<div className="flex flex-col md:flex-row justify-center items-center my-12 space-y-4 md:space-x-16 max-w-60 md:max-w-max">

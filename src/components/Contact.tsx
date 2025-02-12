@@ -3,6 +3,7 @@ const Contact = () => {
 		<section
 			id="contact"
 			className="flex flex-col justify-center items-center py-12"
+			data-section
 		>
 			<div>
 				<div className="flex flex-col items-center md:items-start space-y-4 text-center md:text-start border-b border-secondary pb-6">

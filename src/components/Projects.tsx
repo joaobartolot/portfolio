@@ -15,6 +15,7 @@ const Projects = () => {
 		<section
 			className="relative flex flex-col justify-center items-center"
 			id="projects"
+			data-section
 		>
 			{/* Slider */}
 			<TechStackSlider />
@@ -26,7 +27,7 @@ const Projects = () => {
 						<img
 							src="iphone.png"
 							alt="Mr. Gula website"
-							className="w-full max-w-[180px] md:max-w-[250px] xl:max-w-[350px] object-cover"
+							className="w-full max-w-[200px] md:max-w-[250px] xl:max-w-[350px] object-cover"
 						/>
 
 						{/* Project Description */}

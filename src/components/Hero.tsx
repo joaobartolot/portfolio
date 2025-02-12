@@ -14,7 +14,7 @@ const Hero = () => {
 				<br />
 				<span className="text-secondary">Solutions</span>_
 			</div>
-			<ScrollIndicator className="absolute bottom-12" />
+			<ScrollIndicator className="absolute bottom-16 md:bottom-12" />
 		</section>
 	);
 };

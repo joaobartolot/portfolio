@@ -47,8 +47,8 @@ const Projects = () => {
 					</div>
 				</div>
 				<div className="flex justify-center space-x-4 overflow-scroll pb-4 w-full my-12">
-					{projects.map(project => (
-						<ProjectCard {...project} />
+					{projects.map((project, index) => (
+						<ProjectCard key={index} {...project} />
 					))}
 				</div>
 			</div>

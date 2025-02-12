@@ -43,7 +43,7 @@ const PageTracker = () => {
 	};
 
 	return (
-		<div className="fixed top-1/2 right-4 -translate-y-1/2 flex flex-col gap-4 z-30">
+		<div className="hidden fixed top-1/2 right-4 -translate-y-1/2 md:flex flex-col gap-4 z-30">
 			{sections.map(id => (
 				<div
 					key={id}

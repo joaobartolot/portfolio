@@ -1,4 +1,5 @@
 import ProjectCard from './ProjectCard';
+import TechStackSlider from './TechStackSlider';
 
 const projects = [
 	{
@@ -16,8 +17,7 @@ const Projects = () => {
 			id="projects"
 		>
 			{/* Slider */}
-			<div className="absolute -top-0 md:top-0 h-14 w-full bg-tertiary -z-10"></div>
-
+			<TechStackSlider />
 			{/* Content Wrapper */}
 			<div className="relative flex flex-col items-center justify-center w-full h-full py-6">
 				{/* iPhone Image */}

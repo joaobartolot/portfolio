@@ -32,7 +32,7 @@ const Projects = () => {
 						/>
 
 						{/* Project Description */}
-						<div className="pt-[50px] px-2 text-start space-y-2 md:space-y-4 md:border-b border-secondary pb-2 max-h-[300px]">
+						<div className="pt-[50px] pr-2 text-start space-y-2 md:space-y-4 md:border-b border-secondary pb-2 max-h-[300px]">
 							<AnimatedSectionTitle
 								word="Projects"
 								className="font-display text-xl md:text-2xl lg:text-3xl"

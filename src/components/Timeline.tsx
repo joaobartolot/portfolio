@@ -44,9 +44,12 @@ const Timeline = () => {
 			<div className="max-w-screen overflow-x-hidden">
 				<div className="relative w-max px-10">
 					<div className="absolute left-0 bottom-[36px] border-dashed border-b-2 border-white w-full"></div>
-					<div className="flex items-end space-x-24">
+					<div className="flex items-end space-x-12 lg:space-x-24">
 						{experiences.map((exp, index) => (
-							<div key={index} className="flex space-x-6">
+							<div
+								key={index}
+								className="flex space-x-4 lg:space-x-6"
+							>
 								<div className="relative flex flex-col items-center text-center">
 									<CompanyIcon icon={exp.icon} />
 									<div className="absolute bottom-2 font-light text-sm">
@@ -54,7 +57,7 @@ const Timeline = () => {
 									</div>
 									<div className="absolute bottom-[26px] left-1/2 -translate-1/2 w-3 h-3 bg-secondary rounded-full"></div>
 								</div>
-								<div className="flex flex-col space-y-4 text-start min-w-[200px] text-sm">
+								<div className="flex flex-col space-y-4 text-start text-sm">
 									<div className="font-bold  leading-4">
 										{exp.role} at {exp.company}
 										<br />

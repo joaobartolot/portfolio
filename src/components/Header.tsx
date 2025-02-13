@@ -71,12 +71,8 @@ const Header = () => {
 		closed: { rotate: 0, y: 0 },
 		open: { rotate: -45, y: -8, width: '100%' },
 	};
-	const handleAnchorClick = (
-		event: React.MouseEvent<HTMLAnchorElement>,
-		sectionId: string
-	) => {
-		event.preventDefault(); // Prevent default anchor link behavior
 
+	const scrollToElement = (sectionId: string) => {
 		const sectionElement = document.getElementById(sectionId);
 		if (sectionElement) {
 			const sectionPosition =
@@ -89,6 +85,13 @@ const Header = () => {
 				behavior: 'smooth',
 			});
 		}
+	};
+	const handleAnchorClick = (
+		event: React.MouseEvent<HTMLAnchorElement>,
+		sectionId: string
+	) => {
+		event.preventDefault(); // Prevent default anchor link behavior
+		scrollToElement(sectionId);
 	};
 
 	return (
@@ -138,7 +141,7 @@ const Header = () => {
 				</button>
 
 				<Button
-					onClick={() => console.log('hello')}
+					onClick={() => scrollToElement('contact')}
 					className="z-50 px-2 py-1 text-sm md:px-8 md:py-2 md:text-base"
 				>
 					Hire me

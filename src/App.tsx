@@ -12,7 +12,7 @@ function App() {
 	return (
 		<>
 			<Header />
-			<main>
+			<main className="overflow-x-hidden">
 				<PageTracker />
 				<Hero />
 				<About />

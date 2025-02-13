@@ -1,4 +1,7 @@
+import Blob from '../assets/blobs/blob6.svg?react';
 import EmailIcon from '../assets/icons/email.svg?react';
+import ArrowMeetMD from '../assets/images/arrow-meet-md.svg?react';
+import ArrowMeet from '../assets/images/arrow-meet.svg?react';
 import Button from './Button';
 import FloatingInput from './FloatingInput';
 
@@ -6,20 +9,30 @@ const Contact = () => {
 	return (
 		<section
 			id="contact"
-			className="flex flex-col justify-center items-center py-12"
+			className="relative flex flex-col justify-center items-center py-12 overflow-visible"
 			data-section
 		>
 			<div>
-				<div className="flex flex-col items-center md:items-start space-y-4 text-center md:text-start border-b border-secondary pb-6">
+				<div className="relative flex flex-col items-center md:items-start space-y-4 text-center md:text-start border-none md:border-b border-secondary pb-6">
 					<div className="text-2xl md:text-3xl font-display">
 						Let’s Build Something Together!
 					</div>
-					<div className="w-sm">
+					<div className="w-3xs md:w-xl md:text-lg font-light">
 						Feel free to reach out through any of the platforms
 						below. I’m excited to hear from you!
 					</div>
+					<div className="absolute right-0 bottom-0 translate-y-[40%] md:translate-y-[50%] md:translate-x-[100%] px-2 md:p-0">
+						<div className="relative">
+							<ArrowMeet className="lg:hidden" />
+							<ArrowMeetMD className="hidden lg:block" />
+							<div className="absolute right-0 translate-y-[20%] translate-x-[] md:translate-x-[25%] lg:translate-x-[50%] -rotate-[20deg] md:-rotate-[30deg] lg:-rotate-45 w-[100px] md:w-[160px] text-xs lg:text-sm ">
+								If you are nearby, let’s grab a coffee and meet
+								up!
+							</div>
+						</div>
+					</div>
 				</div>
-				<div className="flex flex-col md:flex-row justify-center md:justify-start w-full mt-6 space-x-0 space-y-4 md:space-x-6 md:space-y-0">
+				<div className="flex flex-col md:flex-row justify-center md:justify-start w-full md:mt-6 space-x-0 space-y-4 md:space-x-6 md:space-y-0">
 					<a
 						href="mailto:jvcbartolot@gmail.com"
 						target="_blank"
@@ -63,6 +76,7 @@ const Contact = () => {
 					</div>
 				</form>
 			</div>
+			<Blob className="absolute left-[50%] -translate-x-[50%] -z-10 hidden" />
 		</section>
 	);
 };

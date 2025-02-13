@@ -6,7 +6,7 @@ const Hero = () => {
 	return (
 		<section
 			id="hero"
-			className="relative flex justify-center items-center w-full h-screen overflow-hidden"
+			className="relative flex justify-center items-center w-full h-screen overflow-visible"
 			data-section
 		>
 			<div className="relative w-[80%] flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
@@ -22,7 +22,7 @@ const Hero = () => {
 						className="w-full aspect-square object-cover"
 					/>
 				</div>
-				<Blob className="absolute right-0 top-0 -z-10 h-full w-full scale-150 md:w-[70%] text-secondary/25 blur-2xl" />
+				<Blob className="absolute right-0 top-0 -z-10 h-full w-full scale-150 md:w-[50%] text-secondary/25 blur-2xl" />
 			</div>
 			<ScrollIndicator className="absolute bottom-16 md:bottom-12" />
 		</section>

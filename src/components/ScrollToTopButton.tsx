@@ -15,6 +15,10 @@ const ScrollToTopButton = () => {
 	};
 
 	useEffect(() => {
+		if (!activeSection) {
+			setPosition('top');
+			return;
+		}
 		if (activeSection === 'hero') {
 			setPosition('top');
 			return;

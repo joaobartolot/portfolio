@@ -24,15 +24,15 @@ const Projects = () => {
 			<div className="relative flex flex-col items-center justify-center w-full h-full py-6">
 				{/* iPhone Image */}
 				<div className=" flex flex-col w-full">
-					<div className="flex justify-center items-end xl:items-center border-b border-secondary md:border-none w-full pb-12 md:p-0 space-x-2 md:space-x-12 xl:space-x-24">
+					<div className="flex justify-center xl:items-center border-b border-secondary md:border-none w-full px-2 pb-12 md:p-0 space-x-2 md:space-x-12 xl:space-x-24">
 						<img
 							src="iphone.png"
 							alt="Mr. Gula website"
-							className="w-full max-w-[200px] md:max-w-[250px] xl:max-w-[350px] object-cover"
+							className="md:p-0 h-full w-full max-w-[200px] md:max-w-[250px] xl:max-w-[350px] object-cover"
 						/>
 
 						{/* Project Description */}
-						<div className="text-start space-y-2 md:space-y-4 md:border-b border-secondary pb-2 max-h-[300px]">
+						<div className="pt-[50px] px-2 text-start space-y-2 md:space-y-4 md:border-b border-secondary pb-2 max-h-[300px]">
 							<AnimatedSectionTitle
 								word="Projects"
 								className="font-display text-xl md:text-2xl lg:text-3xl"

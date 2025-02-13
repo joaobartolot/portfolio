@@ -1,5 +1,6 @@
 import AnimatedSectionTitle from './AnimatedSectionTitle';
 import Timeline from './Timeline';
+import TimelineVertical from './TimelineVertical';
 
 const Experience = () => {
 	return (
@@ -38,6 +39,7 @@ const Experience = () => {
 					</div>
 				</div>
 				<Timeline />
+				<TimelineVertical />
 			</div>
 		</section>
 	);

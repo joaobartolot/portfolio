@@ -40,8 +40,8 @@ const CompanyIcon = ({ icon = '' }) => {
 
 const Timeline = () => {
 	return (
-		<div className="w-full py-10 text-white">
-			<div className="max-w-screen overflow-x-scroll">
+		<div className="hidden md:block w-full py-10 text-white">
+			<div className="max-w-screen overflow-x-hidden">
 				<div className="relative w-max px-10">
 					<div className="absolute left-0 bottom-[36px] border-dashed border-b-2 border-white w-full"></div>
 					<div className="flex items-end space-x-24">

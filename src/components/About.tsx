@@ -1,3 +1,5 @@
+import Blob from '../assets/blobs/blob2.svg?react';
+import BlobTwo from '../assets/blobs/blob3.svg?react';
 import AnimatedSectionTitle from './AnimatedSectionTitle';
 import Button from './Button';
 
@@ -5,7 +7,7 @@ const About = () => {
 	return (
 		<section
 			id="about"
-			className="flex flex-col justify-center items-center w-full py-16"
+			className="relative flex flex-col justify-center items-center w-full py-16 overflow-hidden"
 			data-section
 		>
 			<AnimatedSectionTitle
@@ -40,6 +42,8 @@ const About = () => {
 				</div>
 			</div>
 			<Button>Download CV</Button>
+			<Blob className="absolute top-0 left-0 -translate-x-2/3 md:-translate-x-1/2 w-3xl aspect-square text-secondary/25 -z-10 blur-xl" />
+			<BlobTwo className="absolute bottom-0 right-0 translate-x-2/3 w-sm md:w-xl rotate-45 aspect-square text-tertiary/25 -z-10 blur-xl" />
 		</section>
 	);
 };

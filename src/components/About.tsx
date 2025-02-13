@@ -1,7 +1,5 @@
-import Blob from '../assets/blobs/blob2.svg?react';
-import BlobTwo from '../assets/blobs/blob3.svg?react';
 import AnimatedSectionTitle from './AnimatedSectionTitle';
-import Button from './Button';
+import DownloadCV from './DownloadCV';
 
 const About = () => {
 	return (
@@ -41,9 +39,7 @@ const About = () => {
 					</div>
 				</div>
 			</div>
-			<Button>Download CV</Button>
-			<Blob className="absolute top-0 left-0 -translate-x-2/3 md:-translate-x-1/2 w-3xl aspect-square text-secondary/25 -z-10 blur-xl" />
-			<BlobTwo className="absolute bottom-0 right-0 translate-x-2/3 w-sm md:w-xl rotate-45 aspect-square text-tertiary/25 -z-10 blur-xl" />
+			<DownloadCV />
 		</section>
 	);
 };

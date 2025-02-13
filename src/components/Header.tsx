@@ -7,6 +7,28 @@ const Header = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [frostHeader, setFrostHeader] = useState(false);
 	const headerRef = useRef<HTMLElement>(null);
+	const [offset, setOffset] = useState(60);
+	const [hideFast, setHideFast] = useState(false);
+
+	// Update offset based on screen width
+	useEffect(() => {
+		const updateOffset = () => {
+			const md = window.matchMedia('(min-width: 768px)').matches;
+			if (md) {
+				setIsOpen(false);
+				setHideFast(false);
+				setOffset(72);
+				return;
+			}
+			setOffset(60);
+			setHideFast(true);
+		};
+
+		updateOffset(); // Set initial value
+		window.addEventListener('resize', updateOffset);
+
+		return () => window.removeEventListener('resize', updateOffset);
+	}, []);
 
 	useEffect(() => {
 		window.onscroll = () =>
@@ -57,7 +79,6 @@ const Header = () => {
 
 		const sectionElement = document.getElementById(sectionId);
 		if (sectionElement) {
-			const offset = 72; // Header height
 			const sectionPosition =
 				sectionElement.getBoundingClientRect().top +
 				window.scrollY -
@@ -74,9 +95,10 @@ const Header = () => {
 		<header
 			ref={headerRef}
 			className={twJoin(
-				'fixed flex w-full items-center justify-center px-4 py-4 transition-color duration-300 z-40',
+				'fixed flex w-full items-center justify-center px-4 py-4 z-30',
 				'md:px-12',
-				frostHeader ? 'bg-white/5 backdrop-blur-sm' : ''
+				isOpen && hideFast ? '' : 'transition-color duration-300',
+				frostHeader && !isOpen ? 'bg-white/5 backdrop-blur-sm' : ''
 			)}
 		>
 			<div className="relative flex w-full items-center justify-between">

@@ -12,13 +12,10 @@ const HeroTextEffect = () => {
 			onInit={typewriter => {
 				typewriter
 					.typeString('Coding <br />')
-					.pauseFor(300)
 					.typeString(
 						'<span class="text-secondary">Ideas</span>,<br />'
 					)
-					.pauseFor(300)
 					.typeString('Crafting <br />')
-					.pauseFor(300)
 					.typeString('<span class="text-secondary">Solutions</span>')
 					.start();
 			}}

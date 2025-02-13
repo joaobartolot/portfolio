@@ -8,12 +8,8 @@ type ProjectCardProps = {
 const ProjectCard = ({ name, image, techStack, link }: ProjectCardProps) => {
 	return (
 		<div className="flex flex-col max-w-2xs min-w-2xs h-fit w-fit rounded-2xl border border-secondary py-6">
-			<div className="flex justify-between items-center px-6">
+			<div className="flex justify-start items-center px-6">
 				<div>{name}</div>
-				<div className="flex space-x-2">
-					<div className="w-3 h-3 bg-secondary rounded-full"></div>
-					<div className="w-3 h-3 bg-secondary rounded-full"></div>
-				</div>
 			</div>
 			<a href={link} target="_blank" rel="noopener noreferrer">
 				<img

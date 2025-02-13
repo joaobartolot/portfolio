@@ -28,7 +28,7 @@ const Projects = () => {
 						<img
 							src="iphone.png"
 							alt="Mr. Gula website"
-							className="md:p-0 h-full w-full max-w-[200px] md:max-w-[250px] xl:max-w-[350px] object-cover"
+							className="md:p-0 h-full w-full max-w-[200px] md:max-w-[250px] xl:max-w-[350px] object-cover animate-floating"
 						/>
 
 						{/* Project Description */}

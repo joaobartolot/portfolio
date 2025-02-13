@@ -97,6 +97,7 @@ const Header = () => {
 			className={twJoin(
 				'fixed flex w-full items-center justify-center px-4 py-4 z-30',
 				'md:px-12',
+				!isOpen && hideFast ? 'delay-300' : '',
 				isOpen && hideFast ? '' : 'transition-color duration-300',
 				frostHeader && !isOpen ? 'bg-white/5 backdrop-blur-sm' : ''
 			)}

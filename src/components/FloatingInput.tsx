@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 interface FloatingInputProps {
@@ -15,7 +15,7 @@ const FloatingInput: React.FC<FloatingInputProps> = ({
 	label,
 	id,
 	type = 'text',
-	value,
+	value = '',
 	onChange,
 }) => {
 	const isTextarea = type === 'textarea';
@@ -25,6 +25,13 @@ const FloatingInput: React.FC<FloatingInputProps> = ({
 	const handleBlur = () => {
 		if (!value) setIsFocused(false);
 	};
+
+	// Update focus state when value changes
+	useEffect(() => {
+		if (!value) {
+			setIsFocused(false);
+		}
+	}, [value]);
 
 	return (
 		<div className="relative w-full">

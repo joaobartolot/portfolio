@@ -1,3 +1,6 @@
+// src/components/Contact.tsx
+import React, { useState } from 'react';
+import { sendContactMessage } from '../api/sendContactMessage';
 import Blob from '../assets/blobs/blob6.svg?react';
 import EmailIcon from '../assets/icons/email.svg?react';
 import ArrowMeetMD from '../assets/images/arrow-meet-md.svg?react';
@@ -6,6 +9,28 @@ import Button from './Button';
 import FloatingInput from './FloatingInput';
 
 const Contact = () => {
+	// States for each form field
+	const [name, setName] = useState('');
+	const [surname, setSurname] = useState('');
+	const [email, setEmail] = useState('');
+	const [message, setMessage] = useState('');
+
+	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+
+		try {
+			await sendContactMessage({ name, surname, email, message });
+			alert('Message sent successfully!');
+			setName('');
+			setSurname('');
+			setEmail('');
+			setMessage('');
+		} catch (error) {
+			console.error('Error sending message:', error);
+			alert('Failed to send message. Please try again later.');
+		}
+	};
+
 	return (
 		<section
 			id="contact"
@@ -25,7 +50,7 @@ const Contact = () => {
 						<div className="relative">
 							<ArrowMeet className="lg:hidden" />
 							<ArrowMeetMD className="hidden lg:block" />
-							<div className="absolute right-0 translate-y-[20%] translate-x-[] md:translate-x-[25%] lg:translate-x-[50%] -rotate-[20deg] md:-rotate-[30deg] lg:-rotate-45 w-[100px] md:w-[160px] text-xs lg:text-sm ">
+							<div className="absolute right-0 translate-y-[20%] md:translate-x-[25%] lg:translate-x-[50%] -rotate-[20deg] md:-rotate-[30deg] lg:-rotate-45 w-[100px] md:w-[160px] text-xs lg:text-sm">
 								If you are nearby, let’s grab a coffee and meet
 								up!
 							</div>
@@ -50,7 +75,7 @@ const Contact = () => {
 					>
 						<img
 							src="/linkedin.png"
-							alt="Email icon"
+							alt="LinkedIn profile"
 							className="w-8 md:mr-4 aspect-square"
 						/>
 						João Bartolot
@@ -62,14 +87,35 @@ const Contact = () => {
 				<div className="text-center text-2xl md:text-3xl font-semibold">
 					CAN I CONTACT YOU?
 				</div>
-				<form className="w-full max-w-2xl mt-10 space-y-8">
-					<FloatingInput label="Name" id="name" />
-					<FloatingInput label="Surname" id="surname" />
-					<FloatingInput label="Email" id="email" type="email" />
+				<form
+					className="w-full max-w-2xl mt-10 space-y-8"
+					onSubmit={handleSubmit}
+				>
+					<FloatingInput
+						label="Name"
+						id="name"
+						value={name}
+						onChange={e => setName(e.target.value)}
+					/>
+					<FloatingInput
+						label="Surname"
+						id="surname"
+						value={surname}
+						onChange={e => setSurname(e.target.value)}
+					/>
+					<FloatingInput
+						label="Email"
+						id="email"
+						type="email"
+						value={email}
+						onChange={e => setEmail(e.target.value)}
+					/>
 					<FloatingInput
 						label="Message"
 						id="message"
 						type="textarea"
+						value={message}
+						onChange={e => setMessage(e.target.value)}
 					/>
 					<div className="flex justify-center items-center">
 						<Button type="submit">Send</Button>

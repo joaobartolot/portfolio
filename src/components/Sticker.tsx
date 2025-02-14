@@ -1,52 +1,53 @@
-import { motion } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
+import { useEffect } from 'react';
 
-const stickerRevealVariants = {
-	hidden: { x: '100%' }, // Starts fully off-screen to the right
-	visible: {
-		x: '0%',
-		transition: {
-			duration: 0.8,
-			ease: 'easeInOut',
-		},
-	},
-};
-const topRevealVariants = {
-	hidden: { translateX: '0%' }, // Starts fully off-screen to the right
-	visible: {
-		translateX: '-110%',
-		transition: {
-			duration: 1.2,
-			ease: 'easeInOut',
-		},
-	},
-};
 const Sticker = () => {
-	return (
-		<div className="relative w-[180px] md:w-[250px] lg:w-[300px] aspect-square overflow-hidden">
-			<motion.div
-				variants={stickerRevealVariants}
-				initial="hidden"
-				animate="visible"
-				transition={{ duration: 1, ease: 'easeOut' }}
-			>
-				<img
-					src="sticker.png"
-					alt="Sticker Coffee"
-					className="w-full h-full aspect-1 object-cover"
-				/>
-			</motion.div>
+	const controls = useAnimation();
 
-			<div className="absolute top-0 w-full h-full">
-				<motion.div
-					variants={topRevealVariants}
-					initial="hidden"
-					animate="visible"
-					className="relative h-20 rotate-13"
-				>
-					<div className="absolute top-[12px] right-0 h-[131px] w-[50px] bg-[#f7e5c0] shadow-md rounded-r-lg clip-bottom-long" />
-				</motion.div>
-			</div>
-		</div>
+	useEffect(() => {
+		// Replace 'trigger-section' with the id of the element you want to watch.
+		const target = document.getElementById('experience');
+		if (!target) return;
+
+		const observer = new IntersectionObserver(
+			entries => {
+				entries.forEach(entry => {
+					// Check if at least 20% of the target is visible
+					if (
+						entry.isIntersecting &&
+						entry.intersectionRatio >= 0.2
+					) {
+						controls.start('inView');
+					}
+				});
+			},
+			{ threshold: 0.3 }
+		);
+
+		observer.observe(target);
+		return () => observer.disconnect();
+	}, [controls]);
+
+	return (
+		<motion.div
+			initial={{ width: 0 }}
+			animate={controls}
+			variants={{
+				inView: { width: 300 },
+			}}
+			transition={{ duration: 0.4 }}
+			className="flex items-end w-[180px] md:w-[250px] lg:w-[300px] h-[250px] relative overflow-hidden rotate-30"
+		>
+			<motion.div className="relative overflow-hidden">
+				<motion.div className="min-w-[300px] min-h-[172px] rounded-xl bg-[url(./sticker3.png)] bg-left_top bg-no-repeat" />
+			</motion.div>
+			<motion.div
+				initial={{ x: -50 }}
+				variants={{ inView: { x: 270 } }}
+				transition={{ duration: 0.32 }}
+				className="absolute bottom-1/2 right-4 h-[172px] translate-y-[40%] w-[200px] rotate-25 bg-[#f7e5c0] shadow-md rounded-lg"
+			/>
+		</motion.div>
 	);
 };
 

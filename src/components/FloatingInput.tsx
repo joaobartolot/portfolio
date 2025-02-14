@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 interface FloatingInputProps {
@@ -19,6 +19,12 @@ const FloatingInput: React.FC<FloatingInputProps> = ({
 	onChange,
 }) => {
 	const isTextarea = type === 'textarea';
+	const [isFocused, setIsFocused] = useState(false);
+
+	const handleFocus = () => setIsFocused(true);
+	const handleBlur = () => {
+		if (!value) setIsFocused(false);
+	};
 
 	return (
 		<div className="relative w-full">
@@ -29,7 +35,9 @@ const FloatingInput: React.FC<FloatingInputProps> = ({
 					placeholder=" "
 					value={value}
 					onChange={onChange}
-					rows={4} // Default rows for textarea
+					onFocus={handleFocus}
+					onBlur={handleBlur}
+					rows={4}
 				/>
 			) : (
 				<input
@@ -39,16 +47,19 @@ const FloatingInput: React.FC<FloatingInputProps> = ({
 					placeholder=" "
 					value={value}
 					onChange={onChange}
+					onFocus={handleFocus}
+					onBlur={handleBlur}
 				/>
 			)}
 			<label
 				htmlFor={id}
 				className={twMerge(
 					'absolute z-10 origin-[0] rounded-full bg-primary px-2 text-white/30 text-sm duration-300 transform start-1',
-					'peer-focus:px-2 peer-focus:text-secondary peer-focus:top-1.5 peer-focus:scale-80 peer-focus:-translate-y-4',
-					isTextarea
-						? 'top-3 peer-placeholder-shown:top-3'
-						: 'peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2'
+					isFocused || value
+						? 'px-2 text-secondary top-1.5 scale-80 -translate-y-4'
+						: isTextarea
+							? 'top-3 peer-placeholder-shown:top-3'
+							: 'peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2'
 				)}
 			>
 				{label}

@@ -1,6 +1,10 @@
 // api/contact.ts
+// api/contact.ts
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { Resend } from 'resend';
+const { getContactEmailTemplate } = require('../lib/emailTemplate');
+
+// ... rest of your code remains the same
 
 // Get credentials from environment variables
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
@@ -29,8 +33,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 		return res.status(400).json({ error: 'Missing required fields' });
 	}
 
-	// Dynamically import the email template (ES module)
-	const { getContactEmailTemplate } = await import('../lib/emailTemplate');
 	// Generate the HTML email content
 	const htmlContent = getContactEmailTemplate(name, surname, email, message);
 

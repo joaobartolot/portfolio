@@ -107,8 +107,9 @@ const Header = () => {
 		>
 			<div className="relative flex w-full items-center justify-between">
 				<div
+					onClick={() => window.scrollTo(0, 0)}
 					className={twJoin(
-						'absolute inset-0 z-40 flex h-full w-full items-center justify-center',
+						'absolute inset-0 z-40 flex h-full w-full items-center justify-center cursor-pointer',
 						'md:static md:w-fit'
 					)}
 				>

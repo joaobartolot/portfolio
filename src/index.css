@@ -50,6 +50,12 @@
   
 }
 
+@layer utilities {
+	.clip-bottom-long {
+	  clip-path: polygon(0% 0%, 100% 0%, 95% 100%, 40% 100%);
+	}
+  }
+	
 :root {
   color-scheme: light dark;
   color: var(--color-white);

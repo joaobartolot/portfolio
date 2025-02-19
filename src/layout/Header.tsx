@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { twJoin } from 'tailwind-merge';
-import Button from './Button';
+import Button from '../components/Button';
 
 const Header = () => {
 	const [isOpen, setIsOpen] = useState(false);

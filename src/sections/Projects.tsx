@@ -1,6 +1,6 @@
-import AnimatedSectionTitle from './AnimatedSectionTitle';
-import ProjectCard from './ProjectCard';
-import TechStackSlider from './TechStackSlider';
+import AnimatedSectionTitle from '../components/AnimatedSectionTitle';
+import ProjectCard from '../components/ProjectCard';
+import TechStackSlider from '../components/TechStackSlider';
 
 const projects = [
 	{

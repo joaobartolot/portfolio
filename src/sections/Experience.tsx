@@ -1,7 +1,7 @@
 import Blob from '../assets/blobs/blob4.svg?react';
 import BlobTwo from '../assets/blobs/blob5.svg?react';
-import AnimatedSectionTitle from './AnimatedSectionTitle';
-import Timeline from './Timeline';
+import AnimatedSectionTitle from '../components/AnimatedSectionTitle';
+import Timeline from '../components/Timeline';
 
 const Experience = () => {
 	return (

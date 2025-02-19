@@ -1,6 +1,6 @@
 import Blob from '../assets/blobs/blob1.svg?react';
-import HeroTextEffect from './HeroTextEffect';
-import ScrollIndicator from './ScrollIndicator';
+import HeroTextEffect from '../components/HeroTextEffect';
+import ScrollIndicator from '../components/ScrollIndicator';
 
 const Hero = () => {
 	return (

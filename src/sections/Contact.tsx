@@ -5,29 +5,43 @@ import Blob from '../assets/blobs/blob6.svg?react';
 import EmailIcon from '../assets/icons/email.svg?react';
 import ArrowMeetMD from '../assets/images/arrow-meet-md.svg?react';
 import ArrowMeet from '../assets/images/arrow-meet.svg?react';
-import Button from './Button';
-import FloatingInput from './FloatingInput';
+import Button from '../components/Button';
+import EmailFeedbackModal from '../components/EmailFeedbackModal';
+import FloatingInput from '../components/FloatingInput';
+import useModal from '../hooks/useModal';
 
 const Contact = () => {
-	// States for each form field
+	const { isOpen, openModal, closeModal } = useModal();
+	const [isSuccess, setIsSuccess] = useState(false);
 	const [name, setName] = useState('');
 	const [surname, setSurname] = useState('');
 	const [email, setEmail] = useState('');
 	const [message, setMessage] = useState('');
+
+	const handleEmailSend = (success: boolean) => {
+		setIsSuccess(success);
+		openModal();
+	};
+
+	const handleClose = () => {
+		if (isSuccess) {
+			setName('');
+			setSurname('');
+			setEmail('');
+			setMessage('');
+		}
+
+		closeModal();
+	};
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
 		try {
 			await sendContactMessage({ name, surname, email, message });
-			alert('Message sent successfully!');
-			setName('');
-			setSurname('');
-			setEmail('');
-			setMessage('');
-		} catch (error) {
-			console.error('Error sending message:', error);
-			alert('Failed to send message. Please try again later.');
+			handleEmailSend(true);
+		} catch {
+			handleEmailSend(false);
 		}
 	};
 
@@ -123,6 +137,12 @@ const Contact = () => {
 				</form>
 			</div>
 			<Blob className="absolute left-[50%] -translate-x-[50%] -z-10 hidden" />
+
+			<EmailFeedbackModal
+				isOpen={isOpen}
+				onClose={handleClose}
+				isSuccess={isSuccess}
+			/>
 		</section>
 	);
 };

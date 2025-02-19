@@ -2,8 +2,8 @@ import Blob from '../assets/blobs/blob2.svg?react';
 import BlobTwo from '../assets/blobs/blob3.svg?react';
 import ArrowMagicMD from '../assets/images/arrow-magic-md.svg?react';
 import ArrowMagic from '../assets/images/arrow-magic.svg?react';
-import AnimatedSectionTitle from './AnimatedSectionTitle';
-import DownloadCV from './DownloadCV';
+import AnimatedSectionTitle from '../components/AnimatedSectionTitle';
+import DownloadCV from '../components/DownloadCV';
 
 const About = () => {
 	return (

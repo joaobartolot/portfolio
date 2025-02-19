@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import { motion } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
 
 interface EmailFeedbackModalProps {
 	isOpen: boolean;
@@ -11,9 +12,11 @@ const EmailFeedbackModal: React.FC<EmailFeedbackModalProps> = ({
 	onClose,
 	isSuccess,
 }) => {
+	const [isClosing, setIsClosing] = useState(false);
+
 	useEffect(() => {
 		const handleEscape = (event: KeyboardEvent) => {
-			if (event.key === 'Escape') {
+			if (event.key === 'Escape' && !isClosing) {
 				onClose();
 			}
 		};
@@ -22,27 +25,44 @@ const EmailFeedbackModal: React.FC<EmailFeedbackModalProps> = ({
 		return () => {
 			document.removeEventListener('keydown', handleEscape);
 		};
-	}, [onClose]);
+	}, [onClose, isClosing]);
 
-	if (!isOpen) return null;
+	const handleClose = () => {
+		setIsClosing(true);
+	};
+
+	const handleAnimationComplete = () => {
+		if (isClosing) {
+			setIsClosing(false);
+			onClose();
+		}
+	};
+
+	if (!isOpen && !isClosing) return null;
 
 	return (
 		<div
-			className="fixed inset-0 bg-black/40 flex justify-center items-center z-40"
-			onClick={onClose}
+			className="fixed inset-0 bg-black/40 flex justify-center items-center z-40 px-12"
+			onClick={handleClose}
 		>
-			<div className="relative">
+			<motion.div
+				className="relative"
+				initial={{ scale: 0 }}
+				animate={!isClosing ? { scale: 1 } : { scale: 0 }}
+				onAnimationComplete={handleAnimationComplete}
+			>
 				<button
-					onClick={onClose}
-					className="absolute top-5 right-8 z-50 text-4xl cursor-pointer"
+					onClick={handleClose}
+					className="absolute top-5 right-5 z-50 font-black text-2xl cursor-pointer"
 				>
-					<div className="relative">
-						<div className="absolute inset-0 h-0.75 w-4 bg-white rounded-full rotate-45" />
-						<div className="absolute inset-0 h-0.75 w-4 bg-white rounded-full -rotate-45" />
-					</div>
+					<img
+						src="/multiply.png"
+						alt="Multiply icon"
+						className="w-5"
+					/>
 				</button>
 				<div
-					className="bg-white/5 backdrop-blur-sm font-bold py-12 px-24 rounded-lg shadow-lg max-w-md w-full text-center"
+					className="flex flex-col justify-center items-center bg-white/5 backdrop-blur-sm font-bold w-xs md:w-sm aspect-[4/3] rounded-2xl shadow-lg text-center"
 					onClick={e => e.stopPropagation()}
 				>
 					<img
@@ -74,7 +94,7 @@ const EmailFeedbackModal: React.FC<EmailFeedbackModalProps> = ({
 						</p>
 					)}
 				</div>
-			</div>
+			</motion.div>
 		</div>
 	);
 };

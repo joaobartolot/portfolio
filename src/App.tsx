@@ -1,4 +1,3 @@
-import { Analytics } from '@vercel/analytics/react';
 import './App.css';
 import Footer from './layout/Footer';
 import Header from './layout/Header';
@@ -23,7 +22,6 @@ function App() {
 			</main>
 			<Footer />
 			<ScrollToTopButton />
-			<Analytics />
 		</>
 	);
 }

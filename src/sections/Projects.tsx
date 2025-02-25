@@ -1,6 +1,11 @@
-import AnimatedSectionTitle from '../components/AnimatedSectionTitle';
-import ProjectCard from '../components/ProjectCard';
-import TechStackSlider from '../components/TechStackSlider';
+import { useRef, useState } from 'react'
+import { Swiper as SwiperCore } from 'swiper'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import AnimatedSectionTitle from '../components/AnimatedSectionTitle'
+import Pagination from '../components/Pagination'
+import ProjectCard from '../components/ProjectCard'
+import TechStackSlider from '../components/TechStackSlider'
+import useMedia from '../hooks/useMedia'
 
 const projects = [
 	{
@@ -9,9 +14,19 @@ const projects = [
 		techStack: ['React', 'TailwindCSS', 'Sanity CMS'],
 		link: 'https://mr-gula.vercel.app/',
 	},
-];
+	{
+		name: 'ERICK SKORM PORTFOLIO',
+		image: 'erick-skorm.png',
+		techStack: ['React', 'TailwindCSS'],
+		link: 'https://erickskorm.art',
+	},
+]
 
 const Projects = () => {
+	const { md } = useMedia()
+	const [activeIndex, setActiveIndex] = useState(0)
+	const swiperRef = useRef<SwiperCore | null>(null)
+
 	return (
 		<section
 			className="relative flex flex-col justify-center items-center"
@@ -48,14 +63,60 @@ const Projects = () => {
 						</div>
 					</div>
 				</div>
-				<div className="flex justify-center space-x-4 overflow-hidden pb-4 w-full my-12">
-					{projects.map((project, index) => (
-						<ProjectCard key={index} {...project} />
-					))}
-				</div>
+
+				{md ? (
+					<div className="flex justify-center space-x-4 overflow-hidden pb-4 w-full my-12">
+						{projects.map((project, index) => (
+							<ProjectCard key={index} {...project} />
+						))}
+					</div>
+				) : (
+					<>
+						<Swiper
+							loop
+							freeMode
+							onSwiper={swiper => (swiperRef.current = swiper)}
+							onSlideChange={swiper =>
+								setActiveIndex(swiper.realIndex)
+							}
+							breakpoints={{
+								640: {
+									slidesPerView: 1,
+								},
+								768: {
+									slidesPerView: 2,
+								},
+								1024: {
+									slidesPerView: 3,
+								},
+							}}
+							className="w-full max-w-7xl mt-12"
+						>
+							{projects.map((project, index) => (
+								<SwiperSlide
+									key={index}
+									className="flex justify-center items-center"
+								>
+									<div className="flex justify-center items-center w-full">
+										<ProjectCard key={index} {...project} />
+									</div>
+								</SwiperSlide>
+							))}
+						</Swiper>
+
+						<Pagination
+							length={projects.length}
+							activeIndex={activeIndex}
+							onChange={index =>
+								swiperRef.current?.slideToLoop(index)
+							}
+							className="mt-8"
+						/>
+					</>
+				)}
 			</div>
 		</section>
-	);
-};
+	)
+}
 
-export default Projects;
+export default Projects

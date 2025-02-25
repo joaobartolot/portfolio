@@ -1,6 +1,19 @@
-import { twJoin } from 'tailwind-merge';
+import { motion, useInView } from 'framer-motion'
+import { useRef } from 'react'
+import { twJoin } from 'tailwind-merge'
+import useMedia from '../hooks/useMedia'
+import CompanyIcon from './CompanyIcon'
 
-const experiences = [
+interface Experience {
+	year: string
+	company: string
+	location: string
+	role: string
+	description: string
+	icon: string
+}
+
+const experiences: Experience[] = [
 	{
 		year: '2022',
 		company: 'Calindra',
@@ -21,63 +34,47 @@ const experiences = [
 		development, as well as working with relational databases.`,
 		icon: '/trinks.jpg',
 	},
-];
+]
 
-const CompanyIcon = ({ icon = '', year = '' }) => {
-	return (
-		<div className="relative my-10 md:my-0 md:mx-10">
-			<div
-				className={twJoin(
-					'h-[2px] w-[24px] bg-secondary z-10',
-					'md:w-[2px] md:h-[100%]'
-				)}
-			></div>
-			<div
-				className={twJoin(
-					'absolute -translate-y-[52%] translate-x-1/2 rounded-[90px] rounded-bl-lg',
-					'bg-secondary w-fit h-fit p-1 overflow-hidden rotate-45',
-					'md:top-0 md:-translate-x-[48%] md:translate-y-0 md:rounded-br-lg md:rounded-full'
-				)}
-			>
-				<div className="rounded-full overflow-hidden bg-secondary">
-					<img
-						src={icon}
-						alt="company"
-						className="min-w-12 w-12 aspect-square -rotate-45"
-					/>
-				</div>
-			</div>
-			<div
-				className={twJoin(
-					'absolute -left-0.5 -translate-x-1/2 -translate-y-[60%] w-3 h-3 bg-secondary rounded-full',
-					'md:left-0 md:-translate-x-[40%] md:-translate-y-[50%]'
-				)}
-			/>
-			<div
-				className={twJoin(
-					'absolute -left-5 -translate-x-[100%] -translate-y-1/2 text-xs',
-					'md:left-0 md:-translate-x-1/2 md:translate-y-[70%]'
-				)}
-			>
-				{year}
-			</div>
-		</div>
-	);
-};
+const Timeline: React.FC = () => {
+	const { md } = useMedia()
+	const sectionRef = useRef<HTMLDivElement | null>(null)
+	const isInView = useInView(sectionRef, {
+		margin: '0px',
+		once: false,
+		amount: md ? 1 : 0.5,
+	})
 
-const Timeline = () => {
+	const descriptionVariant = {
+		hidden: md
+			? { y: 0, x: -100, opacity: 0 }
+			: { y: -50, x: 0, opacity: 0 },
+		visible: { y: 0, x: 0, opacity: 1 },
+	}
+
 	return (
 		<div className="block w-full py-6 pl-18 text-white">
 			<div
+				ref={sectionRef}
 				className={twJoin(
 					'flex flex-col md:flex-row w-full space-y-12 border-dashed border-l-2 border-white py-12',
-					'md:border-b-2 md:border-l-0 md:py-0 md:px-12 md:space-y-0'
+					'md:border-b-2 md:border-l-0 md:py-0 md:px-12 md:space-y-0 md:min-h-[165px]'
 				)}
 			>
 				{experiences.map(exp => (
-					<div className="flex flex-col md:flex-row">
-						<CompanyIcon icon={exp.icon} year={exp.year} />
-						<div className="px-4 text-start text-sm md:pb-4">
+					<div className="flex flex-col md:flex-row" key={exp.year}>
+						<CompanyIcon
+							icon={exp.icon}
+							year={exp.year}
+							isAnimated={isInView}
+						/>
+						<motion.div
+							variants={descriptionVariant}
+							initial="hidden"
+							animate={isInView ? 'visible' : 'hidden'}
+							transition={{ delay: 0.4, duration: 0.3 }}
+							className="px-4 text-start text-sm md:pb-4"
+						>
 							<div className="font-bold">
 								{exp.role} at {exp.company}
 							</div>
@@ -87,12 +84,12 @@ const Timeline = () => {
 							<div className="max-w-prose md:max-w-[250px] text-xs">
 								{exp.description}
 							</div>
-						</div>
+						</motion.div>
 					</div>
 				))}
 			</div>
 		</div>
-	);
-};
+	)
+}
 
-export default Timeline;
+export default Timeline

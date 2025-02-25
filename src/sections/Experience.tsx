@@ -1,7 +1,7 @@
-import Blob from '../assets/blobs/blob4.svg?react';
-import BlobTwo from '../assets/blobs/blob5.svg?react';
-import AnimatedSectionTitle from '../components/AnimatedSectionTitle';
-import Timeline from '../components/Timeline';
+import Blob from '../assets/blobs/blob4.svg?react'
+import BlobTwo from '../assets/blobs/blob5.svg?react'
+import AnimatedSectionTitle from '../components/AnimatedSectionTitle'
+import Timeline from '../components/Timeline'
 
 const Experience = () => {
 	return (
@@ -44,7 +44,7 @@ const Experience = () => {
 			<Blob className="absolute left-1/2 -translate-x-[80%] w-xl aspect-square text-tertiary/25 blur-2xl -z-10" />
 			<BlobTwo className="absolute left-1/2 -translate-y-[40%] w-xl aspect-square text-secondary/25 blur-2xl -z-10 rotate-90" />
 		</section>
-	);
-};
+	)
+}
 
-export default Experience;
+export default Experience

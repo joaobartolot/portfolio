@@ -1,10 +1,10 @@
 {
-	"tabWidth": 4,
-	"shiftWidth": 4,
-	"useTabs": true,
-	"semi": false,
-	"singleQuote": true,
-	"trailingComma": "es5",
-	"bracketSpacing": true,
-	"arrowParens": "avoid"
+  "tabWidth": 4,
+  "shiftWidth": 4,
+  "useTabs": true,
+  "semi": false,
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "bracketSpacing": true,
+  "arrowParens": "avoid"
 }

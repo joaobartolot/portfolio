@@ -1,6 +1,6 @@
-import Blob from '../assets/blobs/blob1.svg?react';
-import HeroTextEffect from '../components/HeroTextEffect';
-import ScrollIndicator from '../components/ScrollIndicator';
+import Blob from '../assets/blobs/blob1.svg?react'
+import HeroTextEffect from '../components/HeroTextEffect'
+import ScrollIndicator from '../components/ScrollIndicator'
 
 const Hero = () => {
 	return (
@@ -26,7 +26,7 @@ const Hero = () => {
 			</div>
 			<ScrollIndicator className="absolute bottom-16 md:bottom-12" />
 		</section>
-	);
-};
+	)
+}
 
-export default Hero;
+export default Hero

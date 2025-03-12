@@ -15,7 +15,6 @@ const CompanyIcon: React.FC<CompanyIconProps> = ({
 }) => {
 	const { md } = useMedia()
 
-	console.log(md)
 	const stickVariant = {
 		hidden: md
 			? { y: -100, x: 0, opacity: 0 }
@@ -36,15 +35,15 @@ const CompanyIcon: React.FC<CompanyIconProps> = ({
 	}
 
 	return (
-		<motion.div className="relative my-10 md:my-0 md:mx-10 md:pt-14">
+		<motion.div className="relative my-10 md:mx-10 md:my-0 md:pt-14">
 			<motion.div
 				variants={stickVariant}
 				initial="hidden"
 				animate={isAnimated ? 'visible' : 'hidden'}
 				transition={{ duration: 0.3 }}
 				className={twJoin(
-					'h-[2px] w-[24px] bg-secondary z-10',
-					'md:w-[2px] md:h-[100%]'
+					'bg-secondary z-10 h-[2px] w-[24px]',
+					'md:h-[100%] md:w-[2px]'
 				)}
 			/>
 			<motion.div
@@ -54,15 +53,15 @@ const CompanyIcon: React.FC<CompanyIconProps> = ({
 				transition={{ duration: 0.3 }}
 				className={twJoin(
 					'absolute -translate-y-[52%] translate-x-1/2 rounded-[90px] rounded-bl-lg',
-					'bg-secondary w-fit h-fit p-1 overflow-hidden rotate-45',
-					'md:top-0 md:-translate-x-[48%] md:translate-y-0 md:rounded-br-lg md:rounded-full'
+					'bg-secondary h-fit w-fit rotate-45 overflow-hidden p-1',
+					'md:top-0 md:-translate-x-[48%] md:translate-y-0 md:rounded-full md:rounded-br-lg'
 				)}
 			>
-				<div className="rounded-full overflow-hidden bg-secondary">
+				<div className="bg-secondary overflow-hidden rounded-full">
 					<img
 						src={icon}
 						alt="company"
-						className="min-w-12 w-12 aspect-square -rotate-45"
+						className="aspect-square w-12 min-w-12 -rotate-45"
 					/>
 				</div>
 			</motion.div>
@@ -78,7 +77,7 @@ const CompanyIcon: React.FC<CompanyIconProps> = ({
 					duration: 0.2,
 				}}
 				className={twJoin(
-					'absolute -left-0.5 -translate-x-1/2 -translate-y-[60%] w-3 h-3 bg-secondary rounded-full',
+					'bg-secondary absolute -left-0.5 h-3 w-3 -translate-x-1/2 -translate-y-[60%] rounded-full',
 					'md:left-0 md:-translate-x-[40%] md:-translate-y-[50%]'
 				)}
 			/>

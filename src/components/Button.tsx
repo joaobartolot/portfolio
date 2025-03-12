@@ -1,9 +1,9 @@
-import React from 'react';
-import { twMerge } from 'tailwind-merge';
+import React from 'react'
+import { twMerge } from 'tailwind-merge'
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-	children: React.ReactNode;
-	className?: string;
+	children: React.ReactNode
+	className?: string
 }
 
 const Button: React.FC<ButtonProps> = ({ children, className, ...props }) => {
@@ -19,7 +19,7 @@ const Button: React.FC<ButtonProps> = ({ children, className, ...props }) => {
 		>
 			{children}
 		</button>
-	);
-};
+	)
+}
 
-export default Button;
+export default Button

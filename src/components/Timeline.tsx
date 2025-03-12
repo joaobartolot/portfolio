@@ -30,12 +30,12 @@ const Timeline: React.FC = () => {
 		<div className="block w-full py-6 pl-18 text-white">
 			<div
 				className={twJoin(
-					'flex flex-col md:flex-row w-full space-y-12 border-dashed border-l-2 border-white py-12',
-					'md:border-b-2 md:border-l-0 md:py-0 md:px-12 md:space-y-0'
+					'flex w-full flex-col space-y-12 border-l-2 border-dashed border-white py-12 md:flex-row',
+					'md:space-y-0 md:border-b-2 md:border-l-0 md:px-12 md:py-0'
 				)}
 			>
-				{experiences.map(exp => (
-					<TimelineItem experience={exp} />
+				{experiences.map((exp: Experience, index: number) => (
+					<TimelineItem key={index} experience={exp} />
 				))}
 			</div>
 		</div>

@@ -75,12 +75,12 @@ const GameContainer = () => {
 						</div>
 					) : (
 						<div className="flex flex-col gap-6">
-							<div className="flex flex-col items-center justify-center">
+							<div className="flex flex-col items-center justify-center gap-2">
 								<h2 className="font-display text-3xl">
 									protect the{' '}
 									<span className="text-tertiary">code</span>
 								</h2>
-								<p className="font-body max-w-72">
+								<p className="font-body max-w-80">
 									Our code is on a server threatened by
 									asteroids and our duty is to protect it.
 								</p>

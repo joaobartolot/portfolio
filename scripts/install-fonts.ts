@@ -16,8 +16,12 @@ const ensureDependencies = () => {
 	})
 
 	if (missingDeps.length > 0) {
-		console.log(`📦 Installing missing dependencies: ${missingDeps.join(', ')}...`)
-		execSync(`npm install --save-dev ${missingDeps.join(' ')}`, { stdio: 'inherit' })
+		console.log(
+			`📦 Installing missing dependencies: ${missingDeps.join(', ')}...`
+		)
+		execSync(`npm install --save-dev ${missingDeps.join(' ')}`, {
+			stdio: 'inherit',
+		})
 	}
 }
 
@@ -59,7 +63,7 @@ if (args.includes('--help') || args.includes('-h')) {
 ⚠️ 𝗡𝗼𝘁𝗲:
     🔹  Weights are optional; defaults to 400-700.
     🔹  No italics are downloaded by default.
-	`)
+  `)
 	process.exit(0)
 }
 
@@ -88,7 +92,10 @@ const DEFAULT_FONT_WEIGHTS = process.env.DEFAULT_FONT_WEIGHTS
 	? process.env.DEFAULT_FONT_WEIGHTS.split(',').map(Number)
 	: DEFAULT_WEIGHTS
 
-async function downloadFont(fontName: string, weights: number[] = DEFAULT_FONT_WEIGHTS) {
+async function downloadFont(
+	fontName: string,
+	weights: number[] = DEFAULT_FONT_WEIGHTS
+) {
 	const formattedFontName = fontName.replace(/\s+/g, '+')
 	const fontDir = path.join(__dirname, '../src/assets/fonts')
 	const stylesDir = path.join(__dirname, '../src/styles')
@@ -105,30 +112,42 @@ async function downloadFont(fontName: string, weights: number[] = DEFAULT_FONT_W
 		console.log(`📄 Created ${cssFilePath}`)
 	}
 
-	console.log(`🔄 Fetching ${fontName} (${weights.join(', ')}) from Google Fonts...`)
+	console.log(
+		`🔄 Fetching ${fontName} (${weights.join(', ')}) from Google Fonts...`
+	)
 
 	// Fetch CSS from Google Fonts
 	try {
-		const res = await axios.get(`${GOOGLE_FONTS_API}${formattedFontName}:wght@${weights.join(';')}&display=swap`, {
-			headers: { 'User-Agent': 'Mozilla/5.0' },
-		})
+		const res = await axios.get(
+			`${GOOGLE_FONTS_API}${formattedFontName}:wght@${weights.join(';')}&display=swap`,
+			{
+				headers: { 'User-Agent': 'Mozilla/5.0' },
+			}
+		)
 		const css = res.data
 
-		// Extract font URLs
-		const urls = css.match(/url\(([^)]+)\)/g)?.map(url => url.replace(/url\(|\)/g, '').replace(/"/g, '')) || []
+		// Extract font-face blocks with weight and URL using regex
+		const fontFaceRegex =
+			/@font-face\s*{[^}]*font-weight:\s*(\d+);[^}]*src:\s*url\(([^)]+)\)/g
+		let match
+		const fontFilesData: { weight: number; url: string }[] = []
+		while ((match = fontFaceRegex.exec(css)) !== null) {
+			fontFilesData.push({
+				weight: parseInt(match[1]),
+				url: match[2].replace(/["']/g, ''),
+			})
+		}
 
-		// Download each font file
+		// Download each font file based on the extracted data
 		const fontFiles: string[] = []
-		for (const url of urls) {
-			const weightMatch = url.match(/wght(\d+)/)
-			const weight = weightMatch ? parseInt(weightMatch[1]) : 400
-
-			const fontFileName = `${fontName.replace(/\s+/g, '_')}-${weight}.ttf`
-			const fontFilePath = path.join(fontDir, fontFileName)
-
+		for (const { weight, url } of fontFilesData) {
 			if (weights.includes(weight)) {
+				const fontFileName = `${fontName.replace(/\s+/g, '_')}-${weight}.ttf`
+				const fontFilePath = path.join(fontDir, fontFileName)
 				console.log(`⬇️ Downloading ${fontFileName}...`)
-				const fontResponse = await axios.get(url, { responseType: 'arraybuffer' })
+				const fontResponse = await axios.get(url, {
+					responseType: 'arraybuffer',
+				})
 				await fs.writeFile(fontFilePath, fontResponse.data)
 				fontFiles.push(fontFileName)
 			}
@@ -140,10 +159,10 @@ async function downloadFont(fontName: string, weights: number[] = DEFAULT_FONT_W
 				const weight = fontFile.match(/-(\d+)\.ttf$/)?.[1] || '400'
 				return `
 @font-face {
-	font-family: '${fontName}';
-	src: url('../assets/fonts/${fontFile}') format('truetype');
-	font-weight: ${weight};
-	font-style: normal;
+  font-family: '${fontName}';
+  src: url('../assets/fonts/${fontFile}') format('truetype');
+  font-weight: ${weight};
+  font-style: normal;
 }`
 			})
 			.join('\n')
@@ -154,7 +173,7 @@ async function downloadFont(fontName: string, weights: number[] = DEFAULT_FONT_W
 
 		// Ensure index.css exists
 		if (!(await fs.pathExists(indexCssPath))) {
-			await fs.writeFile(indexCssPath, "/* Main CSS */\n")
+			await fs.writeFile(indexCssPath, '/* Main CSS */\n')
 			console.log(`📄 Created ${indexCssPath}`)
 		}
 
@@ -163,13 +182,16 @@ async function downloadFont(fontName: string, weights: number[] = DEFAULT_FONT_W
 
 		// Ensure fonts.css import is at the first line
 		if (!indexCssContent.includes("@import './styles/fonts.css';")) {
-			indexCssContent = `@import './styles/fonts.css';\n\n` + indexCssContent
+			indexCssContent =
+				`@import './styles/fonts.css';\n\n` + indexCssContent
 			await fs.writeFile(indexCssPath, indexCssContent)
-			console.log(`✅ Added font import at the first line of ${indexCssPath}`)
+			console.log(
+				`✅ Added font import at the first line of ${indexCssPath}`
+			)
 		}
 
 		console.log(`🎉 Font ${fontName} installation completed successfully!`)
-	} catch (error) {
+	} catch (error: any) {
 		console.error('❌ Error fetching fonts:', error.message || error)
 	}
 }
@@ -195,9 +217,11 @@ async function deleteFonts() {
 	// Remove fonts.css import from index.css
 	if (await fs.pathExists(indexCssPath)) {
 		let indexCssContent = await fs.readFile(indexCssPath, 'utf8')
-
 		if (indexCssContent.includes("@import './styles/fonts.css';")) {
-			indexCssContent = indexCssContent.replace("@import './styles/fonts.css';\n\n", '')
+			indexCssContent = indexCssContent.replace(
+				"@import './styles/fonts.css';\n\n",
+				''
+			)
 			await fs.writeFile(indexCssPath, indexCssContent)
 			console.log(`🗑️ Removed font import from ${indexCssPath}`)
 		}
@@ -210,6 +234,9 @@ if (args.includes('--delete') || args.includes('-D')) {
 	deleteFonts().catch(err => console.error('❌ Error:', err))
 } else {
 	const fontName = args[0] || DEFAULT_FONT
-	const weights = args.length > 1 ? args.slice(1).map(Number) : DEFAULT_FONT_WEIGHTS
-	downloadFont(fontName, weights).catch(err => console.error('❌ Error:', err))
+	const weights =
+		args.length > 1 ? args.slice(1).map(Number) : DEFAULT_FONT_WEIGHTS
+	downloadFont(fontName, weights).catch(err =>
+		console.error('❌ Error:', err)
+	)
 }

@@ -1,141 +1,90 @@
+@import './styles/fonts.css';
+
 @import 'swiper/css';
 @import 'swiper/css/pagination';
 @import 'swiper/css/navigation';
 
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
-  --color-primary: #121212;
-  --color-secondary: #3B82F6;
-  --color-tertiary: #8B5CF6;
-  --color-disabled: #A8A8A8;
-  --color-white: #EAEAEA;
+	--color-primary: #121212;
+	--color-secondary: #3b82f6;
+	--color-tertiary: #8b5cf6;
+	--color-disabled: #a8a8a8;
+	--color-white: #eaeaea;
 
-  --font-body: "Inter", "serif";
-  --font-display: "Orbit", "sans-serif";
+	--font-body: 'Inter', 'serif';
+	--font-display: 'Orbit', 'sans-serif';
 
-  --animate-slow-bounce: slowBounce 1s ease-in-out infinite;
-  --animate-blink: blink 1s infinite;
-  --animate-floating: floating 3s ease-in-out infinite;
+	--animate-slow-bounce: slowBounce 1s ease-in-out infinite;
+	--animate-blink: blink 1s infinite;
+	--animate-floating: floating 3s ease-in-out infinite;
 
-  @keyframes slowBounce {
+	@keyframes slowBounce {
+		0%,
+		100% {
+			transform: translateY(5px);
+		}
 
-    0%,
-    100% {
-      transform: translateY(5px);
-    }
+		50% {
+			transform: translateY(0px);
+		}
+	}
 
-    50% {
-      transform: translateY(0px);
-    }
-  }
+	@keyframes floating {
+		0% {
+			transform: translateY(0);
+		}
 
-  @keyframes floating {
-    0% {
-      transform: translateY(0);
-    }
+		50% {
+			transform: translateY(-10px);
+		}
 
-    50% {
-      transform: translateY(-10px);
-    }
+		100% {
+			transform: translateY(0);
+		}
+	}
 
-    100% {
-      transform: translateY(0);
-    }
-  }
+	@keyframes blink {
+		0%,
+		100% {
+			opacity: 1;
+		}
 
-  @keyframes blink {
-
-    0%,
-    100% {
-      opacity: 1;
-    }
-
-    50% {
-      opacity: 0;
-    }
-  }
-
+		50% {
+			opacity: 0;
+		}
+	}
 }
 
 @layer utilities {
-  .clip-bottom-long {
-    clip-path: polygon(40% 0%, 100% 0%, 100% 100%, 0% 100%);
-  }
+	.clip-bottom-long {
+		clip-path: polygon(40% 0%, 100% 0%, 100% 100%, 0% 100%);
+	}
 }
 
 :root {
-  color-scheme: light dark;
-  color: var(--color-white);
-  background-color: var(--color-primary);
-  font-family: var(--font-body);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	color-scheme: light dark;
+	color: var(--color-white);
+	background-color: var(--color-primary);
+	font-family: var(--font-body);
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  margin: 0;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+	margin: 0;
+	place-items: center;
+	min-width: 320px;
+	min-height: 100vh;
 }
 
 html {
-  scroll-behavior: smooth;
+	scroll-behavior: smooth;
 }
 
 a:hover {
-  color: var(--color-tertiary);
-}
-
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 100;
-  src: url('./assets/fonts/Inter_24pt-Thin.ttf') format('truetype');
-}
-
-
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 300;
-  src: url('./assets/fonts/Inter_24pt-Light.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  src: url('./assets/fonts/Inter_24pt-Regular.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 500;
-  src: url('./assets/fonts/Inter_24pt-Medium.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 600;
-  src: url('./assets/fonts/Inter_24pt-SemiBold.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 700;
-  src: url('./assets/fonts/Inter_24pt-Bold.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Orbit';
-  font-style: normal;
-  font-weight: 400;
-  src: url('./assets/fonts/Orbit-Regular.ttf') format('truetype');
+	color: var(--color-tertiary);
 }

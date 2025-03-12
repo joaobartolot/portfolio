@@ -1,5 +1,5 @@
-import { useRef, useMemo, useEffect } from 'react'
 import { useFrame, useLoader, useThree } from '@react-three/fiber'
+import { useEffect, useMemo, useRef } from 'react'
 import * as THREE from 'three'
 
 type AsteroidProps = {
@@ -18,7 +18,6 @@ const VELOCITY_MAX = 1.5
 const ROTATION_RANGE = Math.PI * 2
 
 const Asteroid = ({
-	id,
 	onRemove,
 	registerAsteroidRef,
 	unregisterAsteroidRef,
@@ -30,6 +29,7 @@ const Asteroid = ({
 	// Capture the initial viewport once.
 	const initialViewport = useMemo(
 		() => ({ width: viewport.width, height: viewport.height }),
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 		[]
 	)
 
@@ -101,7 +101,7 @@ const Asteroid = ({
 	}, [spawnPosition, targetPosition, speed])
 
 	const hasEntered = useRef(false)
-	useFrame((state, delta) => {
+	useFrame((_, delta) => {
 		if (asteroidRef.current) {
 			asteroidRef.current.position.add(
 				velocity.clone().multiplyScalar(delta)
@@ -132,7 +132,8 @@ const Asteroid = ({
 		return () => {
 			unregisterAsteroidRef()
 		}
-	}, []) // run only once
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [])
 
 	return (
 		<mesh

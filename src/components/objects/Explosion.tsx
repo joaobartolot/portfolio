@@ -36,7 +36,7 @@ const Explosion = ({ position, onComplete }: ExplosionProps) => {
 	})
 
 	// Update particles on each frame.
-	useFrame((state, delta) => {
+	useFrame((_, delta) => {
 		setParticles(prev => {
 			const updated = prev
 				.map(p => ({

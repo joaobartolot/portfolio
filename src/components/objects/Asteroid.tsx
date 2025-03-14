@@ -29,6 +29,7 @@ const Asteroid = ({
 	// Capture the initial viewport once.
 	const initialViewport = useMemo(
 		() => ({ width: viewport.width, height: viewport.height }),
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 		[]
 	)
 
@@ -131,7 +132,8 @@ const Asteroid = ({
 		return () => {
 			unregisterAsteroidRef()
 		}
-	}, []) // run only once
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [])
 
 	return (
 		<mesh

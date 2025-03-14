@@ -6,7 +6,6 @@ import Asteroid from './objects/Asteroid'
 import Bullet from './objects/Bullet'
 import Explosion from './objects/Explosion'
 import PlayerShip from './objects/PlayerShip'
-import Server from './objects/Server'
 
 export type BulletData = {
 	id: string
@@ -27,7 +26,6 @@ type GameProps = {
 const BULLET_RADIUS = 0.5 * 0.05 // half of BULLET_SIZE (0.05)
 const MIN_ASTEROIDS = 10
 const SHIP_SIZE = 0.4
-const SIZE = 0.7 // used by Server
 
 // CollisionManager: handles bullet–asteroid collisions.
 const CollisionManager = ({
@@ -101,37 +99,6 @@ const PlayerCollisionManager = ({
 	return null
 }
 
-// ServerCollisionManager: checks collisions between the server and asteroids.
-const ServerCollisionManager = ({
-	serverRef,
-	asteroidRefs,
-	onServerHit,
-}: {
-	serverRef: React.MutableRefObject<THREE.Mesh | null>
-	asteroidRefs: React.MutableRefObject<Record<string, THREE.Mesh>>
-	onServerHit: () => void
-}) => {
-	useFrame(() => {
-		if (!serverRef.current) return
-		const serverPos = serverRef.current.position
-		// Use SIZE (from Server) as the server's width.
-		const serverRadius = SIZE / 2
-		for (const asteroidId of Object.keys(asteroidRefs.current)) {
-			const asteroidMesh = asteroidRefs.current[asteroidId]
-			if (!asteroidMesh) continue
-			const asteroidRadius = asteroidMesh.scale.x / 2
-			if (
-				serverPos.distanceTo(asteroidMesh.position) <
-				serverRadius + asteroidRadius
-			) {
-				onServerHit()
-				break
-			}
-		}
-	})
-	return null
-}
-
 const Game = ({ onScoreChange, onPlayerDeath }: GameProps) => {
 	const [bullets, setBullets] = useState<BulletData[]>([])
 	const [asteroids, setAsteroids] = useState<AsteroidData[]>([])
@@ -150,7 +117,6 @@ const Game = ({ onScoreChange, onPlayerDeath }: GameProps) => {
 	const bulletRefs = useRef<Record<string, THREE.Mesh>>({})
 	const asteroidRefs = useRef<Record<string, THREE.Mesh>>({})
 	const playerRef = useRef<THREE.Mesh | null>(null)
-	const serverRef = useRef<THREE.Mesh | null>(null)
 
 	const registerBulletRef = useCallback((id: string, ref: THREE.Mesh) => {
 		bulletRefs.current[id] = ref
@@ -247,13 +213,8 @@ const Game = ({ onScoreChange, onPlayerDeath }: GameProps) => {
 		[invulnerable, onPlayerDeath, removeAsteroidFromLeaving]
 	)
 
-	// When the server is hit, game over.
-	const handleServerHit = useCallback(() => {
-		if (onPlayerDeath) onPlayerDeath()
-	}, [onPlayerDeath])
-
 	return (
-		<div className="fixed inset-0 h-full w-full">
+		<div className="h-full w-full">
 			<Canvas className="h-full w-full">
 				<PlayerShip
 					onShoot={spawnBullet}
@@ -261,11 +222,6 @@ const Game = ({ onScoreChange, onPlayerDeath }: GameProps) => {
 						playerRef.current = ref
 					}}
 					invulnerable={invulnerable}
-				/>
-				<Server
-					onRegisterServerRef={(ref: THREE.Mesh) => {
-						serverRef.current = ref
-					}}
 				/>
 				{asteroids.map(asteroid => (
 					<Asteroid
@@ -307,11 +263,6 @@ const Game = ({ onScoreChange, onPlayerDeath }: GameProps) => {
 					asteroidRefs={asteroidRefs}
 					onPlayerHit={handlePlayerHit}
 					invulnerable={invulnerable}
-				/>
-				<ServerCollisionManager
-					serverRef={serverRef}
-					asteroidRefs={asteroidRefs}
-					onServerHit={handleServerHit}
 				/>
 				{explosions.map(exp => (
 					<Explosion

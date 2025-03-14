@@ -1,7 +1,6 @@
-import { useRef, useEffect } from 'react'
 import { useFrame, useLoader, useThree } from '@react-three/fiber'
+import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
-import { log } from 'three/tsl'
 
 const ROTATION_SPEED = 5.0 // radians per second
 const ACCELERATION = 4 // acceleration units per second^2

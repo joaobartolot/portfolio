@@ -1,5 +1,5 @@
-import { useRef, useEffect } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
+import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
 
 const BULLET_SPEED = 5.0
@@ -15,7 +15,6 @@ type BulletProps = {
 }
 
 const Bullet = ({
-	id,
 	position,
 	direction,
 	onRemove,
@@ -36,7 +35,7 @@ const Bullet = ({
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
-	useFrame((state, delta) => {
+	useFrame((_, delta) => {
 		if (bulletRef.current) {
 			bulletRef.current.position.add(
 				direction.clone().multiplyScalar(BULLET_SPEED * delta)
